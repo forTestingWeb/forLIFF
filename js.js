@@ -17,21 +17,21 @@ var date = new Date();
 
 ready();
 //document.getElementById('login').onclick = setValue;
-var ua = navigator.userAgent;//iOS‚©”»•Ê
+var ua = navigator.userAgent;//iOSã‹åˆ¤åˆ¥
 if (ua.indexOf( 'iPhone') > 0 || ua.indexOf('iPad') > 0 ) var isApple = 1;
 else var isApple = 0;
 document.getElementById('isApple').value = isApple;
-var message="Apple‚Ì‹@Ší‚Å‚ÍAd—l‚É‚æ‚èƒpƒXƒ[ƒh‚Æƒƒ‚‚ª”“úˆÈ“à‚ÉÁ‹‚³‚ê‚Ü‚·B"
+var message="Appleã®æ©Ÿå™¨ã§ã¯ã€ä»•æ§˜ã«ã‚ˆã‚Šãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã¨ãƒ¡ãƒ¢ãŒæ•°æ—¥ä»¥å†…ã«æ¶ˆå»ã•ã‚Œã¾ã™ã€‚"
 document.getElementById('ios1').innerHTML=message;
 
 function ready(){
 	if (indexedDB) {
-//		window.alert("‚±‚Ìƒuƒ‰ƒEƒU‚Å‚ÍIndexed DataBase API ‚ªg‚¦‚Ü‚·B");
-		// ƒf[ƒ^ƒx[ƒX‚ğíœ‚µ‚½‚¢ê‡‚ÍƒRƒƒ“ƒg‚ğŠO‚µ‚Ü‚·B
+//		window.alert("ã“ã®ãƒ–ãƒ©ã‚¦ã‚¶ã§ã¯Indexed DataBase API ãŒä½¿ãˆã¾ã™ã€‚");
+		// ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã‚’å‰Šé™¤ã—ãŸã„å ´åˆã¯ã‚³ãƒ¡ãƒ³ãƒˆã‚’å¤–ã—ã¾ã™ã€‚
 //		indexedDB.deleteDatabase("areaDb");
 		var openRequest = indexedDB.open("areaDb", 1.0);
 		openRequest.onupgradeneeded = function(event) {
-			// ƒf[ƒ^ƒx[ƒX‚Ìƒo[ƒWƒ‡ƒ“‚É•ÏX‚ª‚ ‚Á‚½ê‡(‰‚ß‚Ä‚Ìê‡‚à‚±‚±‚ğ’Ê‚è‚Ü‚·B)
+			// ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã«å¤‰æ›´ãŒã‚ã£ãŸå ´åˆ(åˆã‚ã¦ã®å ´åˆã‚‚ã“ã“ã‚’é€šã‚Šã¾ã™ã€‚)
 			db = event.target.result;
 			var store = db.createObjectStore("areaStore", { keyPath: "type"});
 //			store.createIndex("myvalueIndex", "myvalue");
@@ -41,7 +41,7 @@ function ready(){
 			getAll();
 		}
 	} else {
-		window.alert("‚±‚Ìƒuƒ‰ƒEƒU‚Å‚ÍIndexed DataBase API ‚Íg‚¦‚Ü‚¹‚ñB");
+		window.alert("ã“ã®ãƒ–ãƒ©ã‚¦ã‚¶ã§ã¯Indexed DataBase API ã¯ä½¿ãˆã¾ã›ã‚“ã€‚");
 	}
 }
 
@@ -57,9 +57,9 @@ function getAll() {
 	        var cv = cursor.value;
 		myDatas.push(cv)//myDatas=[{type:type,data:{date:date,memo:memo}},...]
 		if (cv.type=="pw") {
-			if (cv.data.date > Date.parse(date)-1000*60*60*24*10 ){//•ÛŠúŠÔ10“ú
+			if (cv.data.date > Date.parse(date)-1000*60*60*24*10 ){//ä¿æŒæœŸé–“10æ—¥
 				document.getElementById('pw').value=cv.data.memo;
-			}else alert("ƒpƒXƒ[ƒh‚ÌÄ“ü—Í‚ª•K—v‚Å‚·B\nOKƒ{ƒ^ƒ“‚ğƒ^ƒbƒv‚µ‚Ä‚­‚¾‚³‚¢B");//10“úƒƒOƒCƒ“‚µ‚È‚¢‚ÆíœB
+			}else alert("ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã®å†å…¥åŠ›ãŒå¿…è¦ã§ã™ã€‚\nOKãƒœã‚¿ãƒ³ã‚’ã‚¿ãƒƒãƒ—ã—ã¦ãã ã•ã„ã€‚");//10æ—¥ãƒ­ã‚°ã‚¤ãƒ³ã—ãªã„ã¨å‰Šé™¤ã€‚
 		}
 		cursor.continue();
 	}
@@ -73,8 +73,4 @@ function setValue() {
 	var request = store.put({ type:"pw", data:{date:d, memo:v} });
 	request.onsuccess = function (event) {
 	}
-}
-
-function onSuccess() {
-  google.script.host.close();
 }
