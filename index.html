@@ -4,7 +4,17 @@
 <meta name="robots" content="noindex,nofollow,noarchive" />
 <link rel="stylesheet" type="text/css" media="all" href="style.css">
 <base target="_top">
-  </head>
+<script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+<script>
+liff.init({
+    liffId: myLiffId
+}).then(() => {
+    // ここからLIFF SDKを使用可能
+}).catch((err) => {
+    // エラー時の処理
+});
+</script>
+</head>
   <body>
 <iframe class="embed" id="embed" src="test"></iframe>
 
