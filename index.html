@@ -7,10 +7,14 @@
 <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
 <script>
 liff.init({
-    liffId: myLiffId
+    liffId: "2005353358-O06e5Z4z"
 }).then(() => {
     // ここからLIFF SDKを使用可能
-    alert(myLiffId);
+    if (!liff.isLoggedIn()) {
+      liff.login();
+    }
+    const idToken = liff.getDecodedIDToken();
+    const userId = idToken.sub;
 }).catch((err) => {
     // エラー時の処理
     alert("err");
