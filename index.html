@@ -3,78 +3,22 @@
   <head>
 <meta name="robots" content="noindex,nofollow,noarchive" />
 <link rel="stylesheet" type="text/css" media="all" href="style.css">
-  <script>
-//LocalStorageに未コピーのデータがあれば、IndexedDBにコピー
-function copy(){
-  var localStorageDatas = Object.keys(localStorage).map(key => {
-    return {
-        key: key,
-        value: localStorage.getItem(key)
-    }
-  });
-  localStorageDatas.forEach(function(d){
-    if (d.key!=="pw"&&d.key!=="date"){
-      var value=JSON.parse(d.value);
-      var obj={type:d.key,data:{date:value.date, latlng:value.latlng, memo:value.memo}};
-      setObj(obj);
-    }
-  });
-  localStorage.setItem("copied", "done");
-}
-
-function ready(){
-  if (indexedDB) {
-		// データベースを削除したい場合はコメントを外します。
-// 		indexedDB.deleteDatabase("areaDb");
-  	var openRequest = indexedDB.open("areaDb", 1.0);
-	 	openRequest.onupgradeneeded = function(event) {
-	  	// データベースのバージョンに変更があった場合(初めての場合もここを通ります。)
-  		db = event.target.result;
-	 		var store = db.createObjectStore("areaStore", { keyPath: "type"});
-	  }
-  	openRequest.onsuccess = function(event) {
-	 		db = event.target.result;
-      copy();
- 		}
-  }
-}
-
-function setObj(obj) {
-	var transaction = db.transaction(["areaStore"], "readwrite");
-	var store = transaction.objectStore("areaStore");
-	var request = store.put({ type:obj.type, data:obj.data });
-	request.onsuccess = function (event) {
-	}
-}
-var copied=localStorage.getItem("copied");
-if (copied!=="done") ready();
-
-  </script>
-  <base target="_top">
+<base target="_top">
   </head>
   <body>
-    <div class="form-wrapper">
-    <h1><?=text?></h1>
+<iframe class="embed" id="embed" src="test"></iframe>
 
-    <h1>ログイン</h1>
-    <p>　 最終ログイン後10日間はパスワード自動入力。</p>
-      <form method="post" action="https://script.google.com/macros/s/AKfycbwWm-EHjO4jl7-12xSMHG1QeW_fVoVov2NfP6RukE7Q2MHn9KM/exec">
-        <div class="form-item">
-          <label for="password"></label>
-          <input type="password" name="password" id="pw" placeholder="パスワード" ></input>
-          <input type="hidden" name="isApple" id="isApple" value=1 ></input>
-          <input type="hidden" name="view" value="<?=view?>" ></input>
-          <input type="hidden" name="use" value="<?=use?>" ></input>
-          <input type="hidden" name="op" value="<?=op?>" ></input>
-        </div>
-        <div class="button-panel">
-          <input type="submit" class="button" title="Login" id="login" onclick = "setValue()" value="ログイン"></input>
-        </div>
-      </form>
-      <div class="form-footer">
-        <p id="ios1" style="text-align: left;"></p>
-      </div>
-	<script src="js.js"></script>
-    </div>
+<script>
+var params = (new URL(document.location)).searchParams;
+var lm="",op="";
+if(params.get('lm')) lm = "lm="+params.get('lm');
+if(params.get('op')) op = "&op="+params.get('op');
+var src="https://script.google.com/macros/s/AKfycbwWm-EHjO4jl7-12xSMHG1QeW_fVoVov2NfP6RukE7Q2MHn9KM/exec?"+lm+op;
+const el = document.getElementById("embed");
+alert(el.src);
+el.src=src+lm+op;
+alert(el.src);
+</script>
+
   </body>
 </html>
