@@ -13,8 +13,7 @@ liff.init({
     if (!liff.isLoggedIn()) {
       liff.login();
     }
-    const idToken = liff.getDecodedIDToken();
-    const userId = idToken;
+    const userId = liff.getDecodedIDToken();
     alert(userId);
 }).catch((err) => {
     // エラー時の処理
