@@ -10,8 +10,10 @@ liff.init({
     liffId: myLiffId
 }).then(() => {
     // ここからLIFF SDKを使用可能
+    alert(myLiffId);
 }).catch((err) => {
     // エラー時の処理
+    alert("err");
 });
 </script>
 </head>
@@ -25,7 +27,6 @@ if(params.get('lm')) lm = "lm="+params.get('lm');
 if(params.get('op')) op = "&op="+params.get('op');
 var src="https://script.google.com/macros/s/AKfycbwWm-EHjO4jl7-12xSMHG1QeW_fVoVov2NfP6RukE7Q2MHn9KM/exec?"+lm+op;
 const el = document.getElementById("embed");
-alert(el.src);
 el.src=src+lm+op;
 alert(el.src);
 </script>
