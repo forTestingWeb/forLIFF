@@ -10,6 +10,10 @@ body {
   color: #5e5e5e;
   font: 400 87.5%/1.5em 'Open Sans', sans-serif;
 }
+.embed { 
+    height: 100%; 
+    width: 100%;
+}
 .form-wrapper {
   background: #eee;
   margin-right: 0.5em auto;
