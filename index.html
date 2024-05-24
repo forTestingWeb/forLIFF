@@ -29,7 +29,7 @@ var params = (new URL(document.location)).searchParams;
 var lm="",op="",id="";
 if(params.get('lm')) lm = "lm="+params.get('lm');
 if(params.get('op')) op = "&op="+params.get('op');
-if(userId.sub) id = "&id="+userId.sub;
+if(userId) id = "&id="+userId.sub;
 var src="https://script.google.com/macros/s/AKfycbwWm-EHjO4jl7-12xSMHG1QeW_fVoVov2NfP6RukE7Q2MHn9KM/exec?"+lm+op+id;
 const el = document.getElementById("embed");
 el.src=src;
