@@ -12,15 +12,17 @@
 <script>
 liff.init({
     liffId: "2005353358-O06e5Z4z"
-}).then(() => {
+}).catch((err) => {
+      //エラー時の処理
+});
+liff.ready.then(() => {
     // ここからLIFF SDKを使用可能
-    liff.ready.then(() => {
-      if (!liff.isLoggedIn()) {
-        liff.login();
-      }
-      const userId = liff.getDecodedIDToken().sub;
-      alert(userId);
-    });
+    if (!liff.isLoggedIn()) {
+      liff.login();
+    }
+    const userId = liff.getDecodedIDToken().sub;
+    alert(userId);
+  });
 var params = (new URL(document.location)).searchParams;
 var lm="",op="",id="",title="";
 if(params.get('lm')) lm = "lm="+params.get('lm');
@@ -42,8 +44,6 @@ else if ( lm % 100000 < 50000 && 10*parseInt(params.get('lm')[8]) + parseInt(par
   else title = "区域全体図の閲覧";//地図のみ
 }
 document.title = title;
-}).catch((err) => {
-    // エラー時の処理
 });
 </script>
 
