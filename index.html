@@ -11,39 +11,37 @@
 <iframe class="embed" name="embed" id="embed" src="test"></iframe>
 <script>
 liff.init({
-    liffId: "2005353358-O06e5Z4z"
+  liffId: "2005353358-O06e5Z4z"
 }).catch((err) => {
-      //エラー時の処理
+    //エラー時の処理
 });
 liff.ready.then(() => {
-    // ここからLIFF SDKを使用可能
-    if (!liff.isLoggedIn()) {
-      liff.login();
-    }
-    const userId = liff.getDecodedIDToken().sub;
-    alert(userId);
-var params = (new URL(document.location)).searchParams;
-var lm="",op="",id="",title="";
-if(params.get('lm')) lm = "lm="+params.get('lm');
-if(params.get('op')) op = "&op="+params.get('op');
-//if(userId) id = "&id="+userId;
-var src="https://script.google.com/macros/s/AKfycbwWm-EHjO4jl7-12xSMHG1QeW_fVoVov2NfP6RukE7Q2MHn9KM/exec?"+lm+op+id;
-const el = document.getElementById("embed");
-el.src=src;
-var cs = 0;
-for(var i=0;i<params.get('lm').length;i++){
-  if (i!==8 && i!==9)cs=cs+parseInt(params.get('lm')[i]);
-}
-lm=Number(params.get('lm'));
-if ( lm % 100000 >= 50000 && 10*parseInt(params.get('lm')[8]) + parseInt(params.get('lm')[9])-50 == (cs + 5)%49 ){
-  title = "区域番号"+lm%1000+"";//記録用紙へのアクセス含む
-}
-else if ( lm % 100000 < 50000 && 10*parseInt(params.get('lm')[8]) + parseInt(params.get('lm')[9]) == cs%49 ) {
-  if (lm%1000) title = lm%1000+"番の区域の閲覧";//地図のみ
-  else title = "区域全体図の閲覧";//地図のみ
-}
-document.title = title;
+  // ここからLIFF SDKを使用可能
+  if (!liff.isLoggedIn()) {
+    liff.login();
+  }
+  const userId = liff.getDecodedIDToken().sub;
+  alert(userId);
 });
+  var params = (new URL(document.location)).searchParams;
+  var lm="",op="",id="",title="";
+  if(params.get('lm')) lm = "lm="+params.get('lm');
+  if(params.get('op')) op = "&op="+params.get('op');
+  var src="https://script.google.com/macros/s/AKfycbwWm-EHjO4jl7-12xSMHG1QeW_fVoVov2NfP6RukE7Q2MHn9KM/exec?"+lm+op+id;
+  const el = document.getElementById("embed");
+  el.src=src;
+  var cs = 0;
+  for(var i=0;i<params.get('lm').length;i++){
+    if (i!==8 && i!==9)cs=cs+parseInt(params.get('lm')[i]);
+  }
+  lm=Number(params.get('lm'));
+  if ( lm % 100000 >= 50000 && 10*parseInt(params.get('lm')[8]) + parseInt(params.get('lm')[9])-50 == (cs + 5)%49 ){
+    title = "区域番号"+lm%1000+"";//記録用紙へのアクセス含む
+  }　else if ( lm % 100000 < 50000 && 10*parseInt(params.get('lm')[8]) + parseInt(params.get('lm')[9]) == cs%49 ) {
+    if (lm%1000) title = lm%1000+"番の区域の閲覧";//地図のみ
+      else title = "区域全体図の閲覧";//地図のみ
+  }
+  document.title = title;
 </script>
 
   </body>
