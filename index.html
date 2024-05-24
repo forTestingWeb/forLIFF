@@ -11,10 +11,13 @@ liff.init({
     liffId: "2005353358-O06e5Z4z"
 }).then(() => {
     // ここからLIFF SDKを使用可能
-    if (!liff.isLoggedIn()) {
-      liff.login();
+    liff.ready.then(() => {
+      if (!liff.isLoggedIn()) {
+        liff.login();
+      }
+      const userId = liff.getDecodedIDToken().sub;
+      alert(userId);
     }
-    const userId = liff.getDecodedIDToken().sub;
 }).catch((err) => {
     // エラー時の処理
 });
