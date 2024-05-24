@@ -15,7 +15,6 @@ liff.init({
       liff.login();
     }
     const userId = liff.getDecodedIDToken();
-    alert(userId.sub);
 }).catch((err) => {
     // エラー時の処理
 });
@@ -25,6 +24,7 @@ liff.init({
 <iframe class="embed" id="embed" src="test"></iframe>
 
 <script>
+if (userId.sub) alert(userId.sub);
 var params = (new URL(document.location)).searchParams;
 var lm="",op="";
 if(params.get('lm')) lm = "lm="+params.get('lm');
