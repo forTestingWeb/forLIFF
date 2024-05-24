@@ -42,7 +42,7 @@ if ( lm % 100000 >= 50000 && 10*parseInt(params.get('lm')[8]) + parseInt(params.
 }
 else if ( lm % 100000 < 50000 && 10*parseInt(params.get('lm')[8]) + parseInt(params.get('lm')[9]) == cs%49 ) {
   if (lm%1000) title = lm%1000+"番の区域の閲覧";//地図のみ
-  else title = 区域全体図の閲覧";//地図のみ
+  else title = "区域全体図の閲覧";//地図のみ
 }
 document.title = title;
 </script>
