@@ -22,7 +22,6 @@ liff.ready.then(() => {
     }
     const userId = liff.getDecodedIDToken().sub;
     alert(userId);
-  });
 var params = (new URL(document.location)).searchParams;
 var lm="",op="",id="",title="";
 if(params.get('lm')) lm = "lm="+params.get('lm');
