@@ -32,11 +32,15 @@ if(params.get('op')) op = "&op="+params.get('op');
 var src="https://script.google.com/macros/s/AKfycbwWm-EHjO4jl7-12xSMHG1QeW_fVoVov2NfP6RukE7Q2MHn9KM/exec?"+lm+op+id;
 const el = document.getElementById("embed");
 el.src=src;
+var cs = 0;
+for(var i=0;i<e.parameter.lm.length;i++){
+  if (i!==8 && i!==9)cs=cs+parseInt(e.parameter.lm[i]);
+}
 lm=Number(params.get('lm'));
-if ( lm % 100000 >= 50000 && 10*parseInt(e.parameter.lm[8]) + parseInt(e.parameter.lm[9])-50 == (cs + 5)%49 ){
+if ( lm % 100000 >= 50000 && 10*parseInt(params.get('lm')[8]) + parseInt(params.get('lm')[9])-50 == (cs + 5)%49 ){
   title = "区域番号"+lm%1000+"の使用";//記録用紙へのアクセス含む
 }
-else if ( lm % 100000 < 50000 && 10*parseInt(e.parameter.lm[8]) + parseInt(e.parameter.lm[9]) == cs%49 ) {
+else if ( lm % 100000 < 50000 && 10*parseInt(params.get('lm')[8]) + parseInt(params.get('lm')[9]) == cs%49 ) {
   title = "区域番号"+lm%1000+"の閲覧";//地図のみ
 }
 document.title = title;
