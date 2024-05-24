@@ -18,12 +18,13 @@ liff.init({
 liff.ready.then(() => {
   // ここからLIFF SDKを使用可能
   if (!liff.isLoggedIn()) {
-//    liff.login();
-    const userId = "none";
+    liff.login();
+/*    const userId = "none";
   }else{
     const userId = liff.getDecodedIDToken().sub;
-  }
-//  const userId = liff.getDecodedIDToken().sub;
+*/  }
+  if (liff.getDecodedIDToken().sub) const userId = liff.getDecodedIDToken().sub;
+  else const userId = "none";
   var params = (new URL(document.location)).searchParams;
   var lm="",op="",id="",title="";
   if(params.get('lm')) lm = "lm="+params.get('lm');
