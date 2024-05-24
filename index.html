@@ -11,6 +11,9 @@ liff.init({
     liffId: "2005353358-O06e5Z4z"
 }).then(() => {
     // ここからLIFF SDKを使用可能
+}).catch((err) => {
+    // エラー時の処理
+});
     liff.ready.then(() => {
       if (!liff.isLoggedIn()) {
         liff.login();
@@ -18,9 +21,6 @@ liff.init({
       const userId = liff.getDecodedIDToken().sub;
       alert(userId);
     }
-}).catch((err) => {
-    // エラー時の処理
-});
 </script>
 </head>
   <body>
