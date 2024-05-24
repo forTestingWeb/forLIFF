@@ -6,6 +6,9 @@
 <title>区域</title>
 <base target="_top">
 <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+</head>
+  <body>
+<iframe class="embed" name="embed" id="embed" src="test"></iframe>
 <script>
 liff.init({
     liffId: "2005353358-O06e5Z4z"
@@ -20,18 +23,8 @@ liff.init({
     }
 }).catch((err) => {
     // エラー時の処理
-    liff.ready.then(() => {
-      if (!liff.isLoggedIn()) {
-        liff.login();
-      }
-      const userId = liff.getDecodedIDToken().sub;
-      alert(userId);
-    }
 });
 </script>
-</head>
-  <body>
-<iframe class="embed" name="embed" id="embed" src="test"></iframe>
 
 <script>
 var params = (new URL(document.location)).searchParams;
