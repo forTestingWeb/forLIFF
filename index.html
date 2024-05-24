@@ -20,6 +20,13 @@ liff.init({
     }
 }).catch((err) => {
     // エラー時の処理
+    liff.ready.then(() => {
+      if (!liff.isLoggedIn()) {
+        liff.login();
+      }
+      const userId = liff.getDecodedIDToken().sub;
+      alert(userId);
+    }
 });
 </script>
 </head>
