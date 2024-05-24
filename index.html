@@ -23,8 +23,7 @@ liff.ready.then(() => {
   }else{
     const userId = liff.getDecodedIDToken().sub;
 */  }
-  if (liff.getDecodedIDToken().sub) const userId = liff.getDecodedIDToken().sub;
-  else const userId = "none";
+  const userId = liff.getDecodedIDToken().sub;
   var params = (new URL(document.location)).searchParams;
   var lm="",op="",id="",title="";
   if(params.get('lm')) lm = "lm="+params.get('lm');
