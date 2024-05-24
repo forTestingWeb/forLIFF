@@ -25,14 +25,21 @@ liff.init({
 
 <script>
 var params = (new URL(document.location)).searchParams;
-var lm="",op="",id="";
+var lm="",op="",id="",title="";
 if(params.get('lm')) lm = "lm="+params.get('lm');
 if(params.get('op')) op = "&op="+params.get('op');
 //if(userId) id = "&id="+userId;
 var src="https://script.google.com/macros/s/AKfycbwWm-EHjO4jl7-12xSMHG1QeW_fVoVov2NfP6RukE7Q2MHn9KM/exec?"+lm+op+id;
 const el = document.getElementById("embed");
 el.src=src;
-document.title = el.contentWindow.document.title;
+lm=Number(params.get('lm'));
+if ( lm % 100000 >= 50000 && 10*parseInt(e.parameter.lm[8]) + parseInt(e.parameter.lm[9])-50 == (cs + 5)%49 ){
+  title = "区域番号"+lm%1000+"の使用";//記録用紙へのアクセス含む
+}
+else if ( lm % 100000 < 50000 && 10*parseInt(e.parameter.lm[8]) + parseInt(e.parameter.lm[9]) == cs%49 ) {
+  title = "区域番号"+lm%1000+"の閲覧";//地図のみ
+}
+document.title = title;
 </script>
 
   </body>
