@@ -21,12 +21,6 @@ liff.init({
       const userId = liff.getDecodedIDToken().sub;
       alert(userId);
     }
-}).catch((err) => {
-    // エラー時の処理
-});
-</script>
-
-<script>
 var params = (new URL(document.location)).searchParams;
 var lm="",op="",id="",title="";
 if(params.get('lm')) lm = "lm="+params.get('lm');
@@ -48,6 +42,9 @@ else if ( lm % 100000 < 50000 && 10*parseInt(params.get('lm')[8]) + parseInt(par
   else title = "区域全体図の閲覧";//地図のみ
 }
 document.title = title;
+}).catch((err) => {
+    // エラー時の処理
+});
 </script>
 
   </body>
