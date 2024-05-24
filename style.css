@@ -1,153 +1,81 @@
- { margin: 0; padding: 0; box-sizing: border-box; }
-html {
-  height: 100%; 
-  width: 100%;
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { 
+    height: 100%; 
+    width: 100%;
 }
-body{ 
+body {
   position: absolute;
   transform-origin: top left;
+  background: #eee;
+  color: #5e5e5e;
+  font: 400 87.5%/1.5em 'Open Sans', sans-serif;
 }
-input[type="button"],
-select,
-textarea {
-  -webkit-appearance: none;
-  border-radius: 0;
-  display: inline-block;
-//  text-align: center;
-  font-size: 14px;
-  color: #000;
-  background-color: #eee;
-  border: 1px solid #000;
+.embed { 
+    height: 100%; 
+    width: 100%;
 }
-input[type="button"]{
-  font-size: 16px;
-  padding: 0.2em 0.5em;
-  border-radius: 10%;/*角を丸く*/
+.form-wrapper {
+  background: #eee;
+  margin-right: 0.5em auto;
+  padding: 0 1em;
 }
-textarea {
-  height: 100px;
-  width: 290px;
-  resize: none;
-  background-color:#fff;
+h1 {
+  text-align: center;
+  padding: 1em 0;
 }
-#map {cursor:pointer;}
-#btn_container {
-	position: absolute;
-	left:48px; top:11px;
-	z-index: 1000;
+form {
+  padding: 0 1.5em;
 }
-.leaflet-popup-content {
-  font-size: 16px;
+.form-item {
+  margin-bottom: 0.75em;
+  width: 100%;
 }
-.leaflet-popup-close-button {
-  font-size: 18px;
+.form-item input {
+  background: #fff;
+  border: none;
+  border-bottom: 2px solid #eee;
+  color: #666;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1em;
+  height: 50px;
+  transition: border-color 0.3s;
+  width: 100%;
 }
-.leaflet-popup-content-wrapper {
-  font-family:monospace;
+.form-item input:focus {
+  border-bottom: 2px solid #c0c0c0;
+  outline: none;
 }
-a { color:#0000FF; text-decoration:none; }
-
-.diviconK {	/* 文字ラベル */
-display: inline-block;
-text-align: center;/*左右中央*/
-width: 40px;
-height: 40px;
-line-height: 40px;/*heightと同じ値に*/
-border-radius: 50%;/*角を丸く*/
-color: #fff;
-background-color: #333;
-opacity: 0.6;
-font-size: 24px;
-//font-weight: bold;
+.button-panel {
+  margin: 2em 0 0;
+  width: 100%;
 }
-.diviconB {	/* 文字ラベル */
-display: inline-block;
-text-align: center;/*左右中央*/
-width: 40px;
-height: 40px;
-line-height: 40px;/*heightと同じ値に*/
-border-radius: 50%;/*角を丸く*/
-color: #fff;
-background-color: #00f;
-opacity: 0.6;
-font-size: 24px;
-font-weight: bold;
+.button-panel .button {
+  background: #f16272;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  height: 50px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.2em;
+  letter-spacing: 0.05em;
+  text-align: center;
+  text-transform: uppercase;
+  transition: background 0.3s ease-in-out;
+  width: 100%;
 }
-.diviconP {	/* 文字ラベル */
-display: inline-block;
-text-align: center;/*左右中央*/
-width: 40px;
-height: 40px;
-line-height: 40px;/*heightと同じ値に*/
-border-radius: 50%;/*角を丸く*/
-color: #fff;
-background-color: #80f;
-opacity: 0.6;
-font-size: 24px;
-font-weight: bold;
+.button:hover {
+  background: #ee3e52;
 }
-.diviconR {	/* 文字ラベル */
-display: inline-block;
-text-align: center;/*左右中央*/
-width: 40px;
-height: 40px;
-line-height: 40px;/*heightと同じ値に*/
-border-radius: 50%;/*角を丸く*/
-color: #fff;
-background-color: #f00;
-opacity: 0.6;
-font-size: 24px;
-font-weight: bold;
+.form-footer {
+  font-size: 1em;
+  padding: 2em 0;
+  text-align: center;
 }
-.diviconO {	/* 文字ラベル */
-display: inline-block;
-text-align: center;/*左右中央*/
-width: 40px;
-height: 40px;
-line-height: 40px;/*heightと同じ値に*/
-border-radius: 50%;/*角を丸く*/
-color: #fff;
-background-color: #f90;
-opacity: 0.6;
-font-size: 24px;
-//font-weight: bold;
+.form-footer a {
+  color: #8c8c8c;
+  text-decoration: none;
+  transition: border-color 0.3s;
 }
-.diviconG {	/* 文字ラベル */
-display: inline-block;
-text-align: center;/*左右中央*/
-width: 40px;
-height: 40px;
-line-height: 40px;/*heightと同じ値に*/
-border-radius: 50%;/*角を丸く*/
-color: #fff;
-background-color: #0f0;
-opacity: 0.6;
-font-size: 24px;
-font-weight: bold;
-}
-.diviconOmit {	/* 文字ラベル */
-display: inline-block;
-text-align: center;/*左右中央*/
-width: 40px;
-height: 40px;
-line-height: 40px;/*heightと同じ値に*/
-border-radius: 50%;/*角を丸く*/
-color: #f00;
-background-color: #333;
-opacity: 0.6;
-font-size: 24px;
-font-weight: bold;
-}
-.diviconNopark {	/* 文字ラベル */
-display: inline-block;
-text-align: center;/*左右中央*/
-width: 12px;
-height: 12px;
-line-height: 12px;/*heightと同じ値に*/
-border-radius: 50%;/*角を丸く*/
-color: #ff0;
-background-color: #000;
-opacity: 1.0;
-font-size: 12px;
-font-weight: bold;
-}
+.form-footer a:hover {
+  border-bottom: 1px dotted #8c8c8c;
+}    
