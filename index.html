@@ -15,7 +15,7 @@ liff.init({
       liff.login();
     }
     const userId = liff.getDecodedIDToken();
-    alert(userId);
+    alert(JSON.stringify(userId));
 }).catch((err) => {
     // エラー時の処理
 });
