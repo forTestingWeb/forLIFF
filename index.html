@@ -17,7 +17,6 @@ liff.init({
     const userId = liff.getDecodedIDToken().sub;
 }).catch((err) => {
     // エラー時の処理
-    alert('err');
 });
 </script>
 </head>
@@ -29,7 +28,7 @@ var params = (new URL(document.location)).searchParams;
 var lm="",op="",id="";
 if(params.get('lm')) lm = "lm="+params.get('lm');
 if(params.get('op')) op = "&op="+params.get('op');
-if(userId) id = "&id="+userId;
+//if(userId) id = "&id="+userId;
 var src="https://script.google.com/macros/s/AKfycbwWm-EHjO4jl7-12xSMHG1QeW_fVoVov2NfP6RukE7Q2MHn9KM/exec?"+lm+op+id;
 const el = document.getElementById("embed");
 el.src=src;
