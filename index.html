@@ -18,7 +18,10 @@ liff.init({
 liff.ready.then(() => {
   // ここからLIFF SDKを使用可能
   if (!liff.isLoggedIn()) {
-    liff.login();
+    const userId = liff.getDecodedIDToken().sub;
+//    liff.login();
+  }else{
+    const userId = "none";
   }
   const userId = liff.getDecodedIDToken().sub;
   var params = (new URL(document.location)).searchParams;
