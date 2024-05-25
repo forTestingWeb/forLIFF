@@ -10,12 +10,12 @@
   <body>
 <iframe class="embed" name="embed" id="embed" allow="geolocation" src="about:blank"></iframe>
 <script>
-if (liff.isInClient()) {
   liff.init({
     liffId: "2005353358-O06e5Z4z"
   }).catch((err) => {
     //エラー時の処理
   });
+if (liff.isInClient()) {
   liff.ready.then(() => {
   // ここからLIFF SDKを使用可能
     if (!liff.isLoggedIn()) {
