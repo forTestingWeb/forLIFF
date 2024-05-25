@@ -16,6 +16,10 @@ liff.init({
   //エラー時の処理
 });
 var userId = "none";
+var params = (new URL(document.location)).searchParams;
+var lm="",op="",id="",title="";
+if(params.get('lm')) lm = "lm="+params.get('lm');
+if(params.get('op')) op = "&op="+params.get('op');
 if (liff.isInClient()) {
   liff.ready.then(() => {
   // ここからLIFF SDKを使用可能
@@ -24,12 +28,12 @@ if (liff.isInClient()) {
     }
     userId = liff.getDecodedIDToken().sub;
   });
+  jump();
+}else{
+  jump();
 }
-var params = (new URL(document.location)).searchParams;
-var lm="",op="",id="",title="";
-if(params.get('lm')) lm = "lm="+params.get('lm');
-if(params.get('op')) op = "&op="+params.get('op');
-if(userId) id = "&id="+userId;
+function jump(){
+id = "&id="+userId;
 var src="https://script.google.com/macros/s/AKfycbwWm-EHjO4jl7-12xSMHG1QeW_fVoVov2NfP6RukE7Q2MHn9KM/exec?"+lm+op+id;
 const el = document.getElementById("embed");
 alert(src);
@@ -46,6 +50,7 @@ if ( lm % 100000 >= 50000 && 10*parseInt(params.get('lm')[8]) + parseInt(params.
   else title = "区域全体図の閲覧";//地図のみ
 }
 document.title = title;
+}
 </script>
 </body>
 </html>
