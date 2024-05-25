@@ -17,20 +17,22 @@ liff.init({
 });
 var params = (new URL(document.location)).searchParams;
 var lm="",op="",id="",title="";
+var userId = "none";
 if (liff.isInClient()) {
   liff.ready.then(() => {
   // ここからLIFF SDKを使用可能
     if (!liff.isLoggedIn()) {
       liff.login();
     }
-    var userId = liff.getDecodedIDToken().sub;
-    jump(userId);
+    userId = liff.getDecodedIDToken().sub;
+    alert("liff");
+    jump();
   });
 }else{
-  var userId = "none";
-  jump(userId);
+  alert("browser");
+  jump();
 }
-function jump(userId){
+function jump(){
 if(params.get('lm')) lm = "lm="+params.get('lm');
 if(params.get('op')) op = "&op="+params.get('op');
 id = "&id="+userId;
