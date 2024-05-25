@@ -33,6 +33,7 @@ if(params.get('op')) op = "&op="+params.get('op');
 if(userId) id = "&id="+userId;
 var src="https://script.google.com/macros/s/AKfycbwWm-EHjO4jl7-12xSMHG1QeW_fVoVov2NfP6RukE7Q2MHn9KM/exec?"+lm+op+id;
 const el = document.getElementById("embed");
+alert(src);
 el.src=src;
 var cs = 0;
 for(var i=0;i<params.get('lm').length;i++){
