@@ -10,20 +10,22 @@
   <body>
 <iframe class="embed" name="embed" id="embed" allow="geolocation" src="about:blank"></iframe>
 <script>
-liff.init({
-  liffId: "2005353358-O06e5Z4z"
-}).catch((err) => {
+if (liff.isInClient()) {
+  liff.init({
+    liffId: "2005353358-O06e5Z4z"
+  }).catch((err) => {
     //エラー時の処理
-});
-liff.ready.then(() => {
+  });
+  liff.ready.then(() => {
   // ここからLIFF SDKを使用可能
-  if (!liff.isLoggedIn()) {
-    liff.login();
-/*    const userId = "none";
-  }else{
-    const userId = liff.getDecodedIDToken().sub;
-*/  }
-  const userId = liff.getDecodedIDToken().sub;
+    if (!liff.isLoggedIn()) {
+      liff.login();
+    }
+    var userId = liff.getDecodedIDToken().sub;
+  });
+}else{
+  var userId = "none";
+}
   var params = (new URL(document.location)).searchParams;
   var lm="",op="",id="",title="";
   if(params.get('lm')) lm = "lm="+params.get('lm');
@@ -44,7 +46,6 @@ liff.ready.then(() => {
       else title = "区域全体図の閲覧";//地図のみ
   }
   document.title = title;
-});
 </script>
 
   </body>
