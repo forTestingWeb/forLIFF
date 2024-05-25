@@ -25,11 +25,9 @@ if (liff.isInClient()) {
       liff.login();
     }
     userId = liff.getDecodedIDToken().sub;
-    alert("liff");
     jump();
   });
 }else{
-  alert("browser");
   jump();
 }
 function jump(){
@@ -39,7 +37,6 @@ if(params.get('lm')){
   id = "&id="+userId;
   var src="https://script.google.com/macros/s/AKfycbwWm-EHjO4jl7-12xSMHG1QeW_fVoVov2NfP6RukE7Q2MHn9KM/exec?"+lm+op+id;
   const el = document.getElementById("embed");
-  alert(src);
   el.src=src;
 }
 var cs = 0;
