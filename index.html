@@ -33,13 +33,15 @@ if (liff.isInClient()) {
   jump();
 }
 function jump(){
-if(params.get('lm')) lm = "lm="+params.get('lm');
-if(params.get('op')) op = "&op="+params.get('op');
-id = "&id="+userId;
-var src="https://script.google.com/macros/s/AKfycbwWm-EHjO4jl7-12xSMHG1QeW_fVoVov2NfP6RukE7Q2MHn9KM/exec?"+lm+op+id;
-const el = document.getElementById("embed");
-alert(src);
-el.src=src;
+if(params.get('lm')){
+  lm = "lm="+params.get('lm');
+  if(params.get('op')) op = "&op="+params.get('op');
+  id = "&id="+userId;
+  var src="https://script.google.com/macros/s/AKfycbwWm-EHjO4jl7-12xSMHG1QeW_fVoVov2NfP6RukE7Q2MHn9KM/exec?"+lm+op+id;
+  const el = document.getElementById("embed");
+  alert(src);
+  el.src=src;
+}
 var cs = 0;
 for(var i=0;i<params.get('lm').length;i++){
   if (i!==8 && i!==9)cs=cs+parseInt(params.get('lm')[i]);
