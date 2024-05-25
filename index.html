@@ -22,9 +22,8 @@ if (liff.isInClient()) {
     if (!liff.isLoggedIn()) {
       liff.login();
     }
+    userId = liff.getDecodedIDToken().sub;
   });
-  userId = liff.getDecodedIDToken().sub;
-}else{
 }
 var params = (new URL(document.location)).searchParams;
 var lm="",op="",id="",title="";
