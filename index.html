@@ -15,6 +15,9 @@ liff.init({
 }).catch((err) => {
   //エラー時の処理
 });
+var userId = "none";
+var params = (new URL(document.location)).searchParams;
+var lm="",op="",id="",title="";
 if (liff.isInClient()) {
   liff.ready.then(() => {
   // ここからLIFF SDKを使用可能
@@ -28,9 +31,6 @@ if (liff.isInClient()) {
   jump();
 }
 function jump(){
-var userId = "none";
-var params = (new URL(document.location)).searchParams;
-var lm="",op="",id="",title="";
 if(params.get('lm')) lm = "lm="+params.get('lm');
 if(params.get('op')) op = "&op="+params.get('op');
 id = "&id="+userId;
