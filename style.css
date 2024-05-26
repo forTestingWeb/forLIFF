@@ -8,7 +8,7 @@ body {
   transform-origin: top left;
   background: #eee;
   font-size: 300%;
-  font-color: #fff;
+  color: #eee;
 }
 .embed { 
    height: 100%; 
