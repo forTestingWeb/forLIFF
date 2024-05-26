@@ -14,6 +14,32 @@ body {
     height: 100%; 
     width: 100%;
 }
+.loader {
+  border: 15px solid #39d4ff;  //border-topは削除
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 2s linear infinite;　　//スピード遅く
+}
+@keyframes spin{
+  0%{
+    transform: rotate(0deg);
+  }
+
+  50%{
+    transform: rotate(180deg);
+    border-radius: 0%;
+    width: 20px;
+    height: 20px;
+    border: 5px double #061fd5;
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+#loader.loaded {
+    animation: fadeOut 3s forwards;
+}
 .form-wrapper {
   background: #eee;
   margin-right: 0.5em auto;
