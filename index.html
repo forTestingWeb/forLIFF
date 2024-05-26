@@ -8,6 +8,10 @@
 <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
 </head>
 <body>
+  <div class="container">
+    <div class="loader"></div>
+    <p>Now loading...</p>
+  </div>
 <iframe class="embed" name="_self" id="embed" allow="geolocation" src="about:blank" onload=""></iframe>
 <script>
 liff.init({
@@ -51,6 +55,10 @@ function jump(){
     else title = "区域全体図の閲覧";//地図のみ
   }
   document.title = title;
+}
+window.onload = ()=>{
+    const loader = document.getElementById('loader');
+    loader.classList.add('loaded');
 }
 </script>
 </body>
