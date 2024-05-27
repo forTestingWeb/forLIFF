@@ -26,6 +26,7 @@ body {
     }
 }
 #loader {
+    pointer-events: none;
     width: 100%;
     height: 100vh;
     background-color: #0052bc;
