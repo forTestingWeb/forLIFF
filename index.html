@@ -26,7 +26,7 @@ var lm="",op="",id="",title="";
 var userId = "none";
 if (liff.isInClient()) {
   liff.ready.then(() => {
-    loader.style.zIndex = "100";
+    loader.display="block"; 
     loader.classList.add('loaded');
   // ここからLIFF SDKを使用可能
     if (!liff.isLoggedIn()) {
