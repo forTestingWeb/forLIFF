@@ -25,6 +25,7 @@ body {
     }
 }
 #loader {
+    visibility: hidden; 
     z-index: -1;
     pointer-events: none;
     width: 100%;
