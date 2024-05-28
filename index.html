@@ -24,8 +24,9 @@ var params = (new URL(document.location)).searchParams;
 var lm="",op="",id="",title="";
 var userId = "none";
 const loader = document.getElementById('loader');
-loader.classList.add('loaded');
 if (liff.isInClient()) {
+  loader.style.zindex = "100";
+  loader.classList.add('loaded');
   liff.ready.then(() => {
   // ここからLIFF SDKを使用可能
     if (!liff.isLoggedIn()) {
