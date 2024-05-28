@@ -26,9 +26,10 @@ var lm="",op="",id="",title="";
 var userId = "none";
 if (liff.isInClient()) {
   liff.ready.then(() => {
-    loader.style.display="block";
   // ここからLIFF SDKを使用可能
-    if (!liff.isLoggedIn()) {
+    if (liff.isLoggedIn()) {
+      loader.style.display="block";
+    } else {
       liff.login();
     }
     userId = liff.getDecodedIDToken().sub;
