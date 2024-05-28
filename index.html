@@ -36,6 +36,8 @@ if (liff.isInClient()) {
     jump();
   });
 }else{
+  loader.style.zIndex = "-1";
+  loader.classList.add('loaded');
   jump();
 }
 function jump(){
