@@ -6,7 +6,7 @@ html, body {
 body {
   position:fixed;
   transform-origin: top left;
-  background: #eee;
+  background: #33e;
   font-size: 200%;
   color: #eee;
 }
