@@ -15,15 +15,16 @@
 
 <iframe class="embed" name="_self" id="embed" allow="geolocation" src="about:blank"></iframe>
 <script>
+const loader = document.getElementById('loader');
 liff.init({
   liffId: "2005353358-O06e5Z4z"
 }).catch((err) => {
   //エラー時の処理
+  loader.style.zIndex = "-1";
 });
 var params = (new URL(document.location)).searchParams;
 var lm="",op="",id="",title="";
 var userId = "none";
-const loader = document.getElementById('loader');
 if (liff.isInClient()) {
   liff.ready.then(() => {
     loader.style.zIndex = "100";
@@ -37,7 +38,6 @@ if (liff.isInClient()) {
   });
 }else{
   loader.style.zIndex = "-1";
-  loader.classList.add('loaded');
   jump();
 }
 function jump(){
