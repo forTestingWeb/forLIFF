@@ -8,11 +8,11 @@ body {
   transform-origin: top left;
   background: #eee;
   font-size: 200%;
+  color: #eee;
 }
 .embed { 
   height: 100%; 
   width: 100%;
-  color: #eee
 }
 @keyframes fadeOut {
     from {
