@@ -6,14 +6,14 @@ html, body {
 body {
   position:fixed;
   transform-origin: top left;
-  background: #33e;
+  background: #eee;
   font-size: 200%;
   color: #eee;
 }
 .embed { 
    height: 100%; 
    width: 100%;
-   color: #eee;
+   color: #33e;
 }
 @keyframes fadeOut {
     from {
