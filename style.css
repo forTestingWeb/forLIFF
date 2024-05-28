@@ -8,12 +8,10 @@ body {
   transform-origin: top left;
   background: #eee;
   font-size: 200%;
-  color: #eee;
 }
 .embed { 
    height: 100%; 
    width: 100%;
-   color: #eee;
 }
 @keyframes fadeOut {
     from {
@@ -29,7 +27,7 @@ body {
     pointer-events: none;
     width: 100%;
     height: 100vh;
-    background-color: #0052bc;
+    background-color: #05c;
 }
 #loader.loaded {
     animation: fadeOut 3s forwards;
