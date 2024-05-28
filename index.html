@@ -17,14 +17,14 @@
 <script>
 liff.init({
   liffId: "2005353358-O06e5Z4z"
-  const loader = document.getElementById('loader');
-  loader.classList.add('loaded');
 }).catch((err) => {
   //エラー時の処理
 });
 var params = (new URL(document.location)).searchParams;
 var lm="",op="",id="",title="";
 var userId = "none";
+const loader = document.getElementById('loader');
+loader.classList.add('loaded');
 if (liff.isInClient()) {
   liff.ready.then(() => {
   // ここからLIFF SDKを使用可能
