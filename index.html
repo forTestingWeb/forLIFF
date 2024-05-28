@@ -27,7 +27,6 @@ var userId = "none";
 if (liff.isInClient()) {
   liff.ready.then(() => {
     loader.style.display="block";
-    loader.classList.add('loaded');
   // ここからLIFF SDKを使用可能
     if (!liff.isLoggedIn()) {
       liff.login();
@@ -36,7 +35,6 @@ if (liff.isInClient()) {
     jump();
   });
 }else{
-  loader.classList.add('loaded');
   jump();
 }
 function jump(){
@@ -60,6 +58,7 @@ function jump(){
     else title = "区域全体図の閲覧";
   }
   document.title = title;
+  loader.classList.add('loaded');
 }
 </script>
 </body>
