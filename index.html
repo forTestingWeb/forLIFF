@@ -17,6 +17,10 @@
 <script>
 liff.init({
   liffId: "2005353358-O06e5Z4z"
+//window.onload = ()=>{
+    const loader = document.getElementById('loader');
+    loader.classList.add('loaded');
+//}
 }).catch((err) => {
   //エラー時の処理
 });
@@ -57,10 +61,6 @@ function jump(){
   }
   document.title = title;
 }
-//window.onload = ()=>{
-    const loader = document.getElementById('loader');
-    loader.classList.add('loaded');
-//}
 </script>
 </body>
 </html>
