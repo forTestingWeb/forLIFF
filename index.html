@@ -44,7 +44,7 @@ if (liff.isInClient()) {
 }
 
 function jump(){
-  loader.classList.add('loaded');
+  loader.style.display="block";
   if(params.get('lm')){
     lm = "lm="+params.get('lm');
     if(params.get('op')) op = "&op="+params.get('op');
@@ -66,7 +66,6 @@ function jump(){
   }
   document.title = title;
 }
-
 
 </script>
 </body>
