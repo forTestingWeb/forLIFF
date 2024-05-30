@@ -39,8 +39,18 @@ if (liff.isInClient()) {
 }else{
   liff.init({
     liffId: "2005353358-O06e5Z4z"
+  }).then(() => {
+//成功時の処理
+    liff.ready.then(() => {
+  // ここからLIFF SDKを使用可能
+      if (liff.isLoggedIn()) loader.style.display="block";
+      else liff.login();
+      userId = liff.getDecodedIDToken().sub;
+      jump();
+  　}).catch((err) => {
+//エラー時の処理
+    });
   });
-  jump();
 }
 
 function jump(){
