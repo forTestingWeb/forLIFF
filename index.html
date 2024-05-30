@@ -25,26 +25,22 @@ liff.init({
   liffId: "2005353358-O06e5Z4z"
 }).then(() => {
 //成功時の処理
-alert("ok");
+alert(userId);
 }).catch((err) => {
 //エラー時の処理
-alert("error");
 });
 if (liff.isInClient()) {
   liff.ready.then(() => {
   // ここからLIFF SDKを使用可能
     if (liff.isLoggedIn()) {
-alert("logged");
       loader.style.display="block";
     } else {
       liff.login();
     }
     userId = liff.getDecodedIDToken().sub;
-alert(userId);
     jump();
   });
 }else{
-alert("notliff");
   jump();
 }
 
