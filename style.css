@@ -24,6 +24,7 @@ body {
     }
 }
 #loader {
+    font-size: xx-large;
     display:none; 
     pointer-events: none;
     width: 100%;
