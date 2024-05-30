@@ -17,10 +17,12 @@
 <iframe class="embed" name="_self" id="embed" allow="geolocation" src="about:blank"></iframe>
 <script>
 const loader = document.getElementById('loader');
+
+alert(0);
+
 var params = (new URL(document.location)).searchParams;
 var lm="",op="",id="",title="";
 var userId = "none";
-var flag=1;
 liff.init({
   liffId: "2005353358-O06e5Z4z"
 }).then(() => {
@@ -29,6 +31,7 @@ liff.init({
 //エラー時の処理
 });
 if (liff.isInClient()) {
+  alert(1);
   liff.ready.then(() => {
   // ここからLIFF SDKを使用可能
     if (liff.isLoggedIn()) {
@@ -40,6 +43,7 @@ if (liff.isInClient()) {
     jump();
   });
 }else{
+  alert(2);
   jump();
 }
 function jump(){
