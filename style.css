@@ -15,12 +15,13 @@ body {
 }
 @keyframes fadeOut {
     from {
+        display:block; 
         opacity: 1;
+        height: 100vh;
     }
     to {
         display: none;
         opacity: 0;
-        font-size: 0vw;
         height: 0vh;
         z-index: -1;
     }
