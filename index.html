@@ -34,12 +34,11 @@ liff.init({
       liff.login();
     }
     userId = liff.getDecodedIDToken().sub;
-    jump();
   });
 }).catch((err) => {
 //エラー時の処理
-  jump();
 });
+    jump();
 }else{
   jump();
 }
