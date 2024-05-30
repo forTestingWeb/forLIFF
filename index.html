@@ -25,7 +25,6 @@ liff.init({
   liffId: "2005353358-O06e5Z4z"
 }).then(() => {
 //成功時の処理
-  alert(userId);
   jump();
 }).catch((err) => {
 //エラー時の処理
@@ -45,6 +44,8 @@ if (liff.isInClient()) {
 }
 
 function jump(){
+  alert(userId+" in jump");
+
   if(params.get('lm')){
     lm = "lm="+params.get('lm');
     if(params.get('op')) op = "&op="+params.get('op');
