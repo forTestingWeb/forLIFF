@@ -20,11 +20,13 @@ const loader = document.getElementById('loader');
 var params = (new URL(document.location)).searchParams;
 var lm="",op="",id="",title="";
 var userId = "none";
+var flag=0;
 liff.init({
   liffId: "2005353358-O06e5Z4z"
 }).then(() => {
 //成功時の処理
 alert("ok");
+  jump();
 }).catch((err) => {
 //エラー時の処理
 alert("error");
@@ -47,7 +49,6 @@ alert(userId);
   });
 }else{
 alert("notliff");
-
   jump();
 }
 function jump(){
