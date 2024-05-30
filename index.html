@@ -28,8 +28,8 @@ if (liff.isInClient()) {
 //成功時の処理
     liff.ready.then(() => {
   // ここからLIFF SDKを使用可能
-      if (!liff.isLoggedIn()) liff.login();
-      loader.style.display="block";
+      if (liff.isLoggedIn()) loader.style.display="block";
+      else liff.login();
       userId = liff.getDecodedIDToken().sub;
       jump();
   　}).catch((err) => {
@@ -42,8 +42,8 @@ if (liff.isInClient()) {
   }).then(() => {
 //成功時の処理
   // ここからLIFF SDKを使用可能
-    if (!liff.isLoggedIn()) liff.login();
-    loader.style.display="block";
+    if (liff.isLoggedIn()) loader.style.display="block";
+    else liff.login();
     userId = liff.getDecodedIDToken().sub;
     jump();
   });
