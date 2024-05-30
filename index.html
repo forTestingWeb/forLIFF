@@ -31,15 +31,12 @@ alert("ok");
 alert("error");
 });
 if (liff.isInClient()) {
-alert("client");
   liff.ready.then(() => {
-alert("ready");
   // ここからLIFF SDKを使用可能
     if (liff.isLoggedIn()) {
 alert("logged");
       loader.style.display="block";
     } else {
-alert("unlogged");
       liff.login();
     }
     userId = liff.getDecodedIDToken().sub;
