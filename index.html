@@ -44,6 +44,7 @@ if (liff.isInClient()) {
 }
 
 function jump(){
+  loader.classList.add('loaded');
   if(params.get('lm')){
     lm = "lm="+params.get('lm');
     if(params.get('op')) op = "&op="+params.get('op');
@@ -64,7 +65,6 @@ function jump(){
     else title = "区域全体図の閲覧";
   }
   document.title = title;
-  loader.classList.add('loaded');
 }
 
 
