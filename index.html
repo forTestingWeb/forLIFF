@@ -25,7 +25,8 @@ liff.init({
   liffId: "2005353358-O06e5Z4z"
 }).then(() => {
 //成功時の処理
-alert(userId);
+  alert(userId);
+  jump();
 }).catch((err) => {
 //エラー時の処理
 });
@@ -38,7 +39,6 @@ if (liff.isInClient()) {
       liff.login();
     }
     userId = liff.getDecodedIDToken().sub;
-    jump();
   });
 }else{
   jump();
