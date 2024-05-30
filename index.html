@@ -17,9 +17,6 @@
 <iframe class="embed" name="_self" id="embed" allow="geolocation" src="about:blank"></iframe>
 <script>
 const loader = document.getElementById('loader');
-
-alert(0);
-
 var params = (new URL(document.location)).searchParams;
 var lm="",op="",id="",title="";
 var userId = "none";
@@ -31,7 +28,6 @@ liff.init({
 //エラー時の処理
 });
 if (liff.isInClient()) {
-  alert(1);
   liff.ready.then(() => {
   // ここからLIFF SDKを使用可能
     if (liff.isLoggedIn()) {
@@ -43,7 +39,6 @@ if (liff.isInClient()) {
     jump();
   });
 }else{
-  alert(2);
   jump();
 }
 function jump(){
@@ -53,6 +48,7 @@ function jump(){
     id = "&id="+userId;
     var src="https://script.google.com/macros/s/AKfycbwWm-EHjO4jl7-12xSMHG1QeW_fVoVov2NfP6RukE7Q2MHn9KM/exec?"+lm+op+id;
     const el = document.getElementById("embed");
+    alert(1);
     el.src=src;
   }
   var cs = 0; 
