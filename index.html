@@ -31,11 +31,10 @@ if (liff.isInClient()) {
       if (liff.isLoggedIn()) loader.style.display="block";
       else liff.login();
       userId = liff.getDecodedIDToken().sub;
-      jump();
   　}).catch((err) => {
 //エラー時の処理
-      jump();
     });
+    jump();
   });
 }else{
   liff.init({
