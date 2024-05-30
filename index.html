@@ -28,6 +28,7 @@ liff.init({
   jump();
 }).catch((err) => {
 //エラー時の処理
+  jump();
 });
 if (liff.isInClient()) {
   liff.ready.then(() => {
@@ -40,7 +41,6 @@ if (liff.isInClient()) {
     userId = liff.getDecodedIDToken().sub;
   });
 }else{
-  jump();
 }
 
 function jump(){
