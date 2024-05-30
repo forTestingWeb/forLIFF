@@ -20,9 +20,13 @@ const loader = document.getElementById('loader');
 var params = (new URL(document.location)).searchParams;
 var lm="",op="",id="",title="";
 var userId = "none";
+var flag=1;
 liff.init({
-  liffId: "2005353358-O06e5Z4z"
+  liffId: "2005353358-O06e5Z4z";
+}).then(() => {
+//成功時の処理
 }).catch((err) => {
+//エラー時の処理
 });
 if (liff.isInClient()) {
   liff.ready.then(() => {
@@ -36,7 +40,6 @@ if (liff.isInClient()) {
     jump();
   });
 }else{
-//エラー時の処理
   jump();
 }
 function jump(){
