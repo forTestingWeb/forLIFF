@@ -36,6 +36,7 @@ if (liff.isInClient()) {
       liff.login();
     }
     userId = liff.getDecodedIDToken().sub;
+    alert(userId);
     jump();
   });
 }else{
