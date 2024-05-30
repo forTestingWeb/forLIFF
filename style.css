@@ -33,5 +33,5 @@ body {
     background-color: #08f;
 }
 #loader.loaded {
-    animation: fadeOut 5s forwards;
+    animation: fadeOut 2s forwards;
 }
