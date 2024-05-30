@@ -29,7 +29,7 @@ body {
     pointer-events: none;
     width: 100%;
     height: 100vh;
-    background-color: #05c;
+    background-color: #08f;
 }
 #loader.loaded {
     animation: fadeOut 5s forwards;
