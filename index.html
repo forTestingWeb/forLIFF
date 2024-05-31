@@ -49,7 +49,7 @@ if (liff.isInClient()) {
       var ret = window.confirm("LINEでログインされていません。\n登録済み場合、ログインするとパスワード入力が不要になります。\nログインしますか？","はい","いいえ");
       if (ret) {
         var location = location.href;
-        liff.login({ redirectUri: "location" });
+        liff.login({ redirectUri: location });
       }
     }
     jump();
