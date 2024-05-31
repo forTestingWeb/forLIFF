@@ -42,9 +42,15 @@ if (liff.isInClient()) {
   }).then(() => {
 //成功時の処理
   // ここからLIFF SDKを使用可能
-    if (liff.isLoggedIn()) loader.style.display="block";
-    else liff.login();
-    userId = liff.getDecodedIDToken().sub;
+    if (liff.isLoggedIn()) {
+      loader.style.display="block";
+      userId = liff.getDecodedIDToken().sub;
+    } else {
+      var ret = window.confirm("LINEでログインされていません。\n登録済み場合、ログインするとパスワード入力が不要になります。\nログインしますか？","はい","いいえ");
+      if (ret) {
+        liff.login();
+        userId = liff.getDecodedIDToken().sub;
+      }
     jump();
   });
 }
