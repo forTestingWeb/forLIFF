@@ -50,6 +50,7 @@ if (liff.isInClient()) {
       if (ret) {
         liff.login();
         userId = liff.getDecodedIDToken().sub;
+        window.location.reload();
       }
     }
     jump();
