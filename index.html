@@ -42,11 +42,9 @@ if (liff.isInClient()) {
   }).then(() => {
 //成功時の処理
   // ここからLIFF SDKを使用可能
-    if (liff.isLoggedIn()) {
-      loader.style.display="block";
-      userId = liff.getDecodedIDToken().sub;
-    }
-//    else liff.login();
+    if (liff.isLoggedIn()) loader.style.display="block";
+    else liff.login();
+    userId = liff.getDecodedIDToken().sub;
     jump();
   });
 }
