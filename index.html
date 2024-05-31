@@ -21,6 +21,7 @@ var params = (new URL(document.location)).searchParams;
 var lm="",op="",id="",title="";
 var userId = "none";
 var flag=0;
+if (params.get('code')) window.reload();
 if (liff.isInClient()) {
   liff.init({
     liffId: "2005353358-O06e5Z4z"
@@ -51,7 +52,6 @@ if (liff.isInClient()) {
 //        var location = location.href;
 //        liff.login({ redirectUri: location });
         liff.login();
-        window.reload();
       }
     }
     jump();
