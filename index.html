@@ -21,7 +21,9 @@ var params = (new URL(document.location)).searchParams;
 var lm="",op="",id="",title="";
 var userId = "none";
 var flag=0;
+init();
 //if (params.get('code')) window.close();
+function init(){
 if (liff.isInClient()) {
   liff.init({
     liffId: "2005353358-O06e5Z4z"
@@ -49,15 +51,16 @@ if (liff.isInClient()) {
     } else {
       var ret = window.confirm("LINEでログインされていません。\n登録済み場合、ログインするとパスワード入力が不要になります。\nログインしますか？","はい","いいえ");
       if (ret) {
-//        var location = document.location;
-        liff.login(/*{ redirectUri: location }*/);
+        var location = document.location;
+        liff.login({ redirectUri: location });
+        init();
 //        liff.login();
       }
     }
     jump();
   });
 }
-
+}
 function jump(){
   if(params.get('lm')){
     lm = "lm="+params.get('lm');
