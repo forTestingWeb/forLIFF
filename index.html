@@ -51,6 +51,7 @@ if (liff.isInClient()) {
       if (ret) {
         var location = document.location;
         liff.login({ redirectUri: location });
+        window.location.reload(false);
 //        liff.login();
       }
     }
