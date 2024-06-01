@@ -6,6 +6,9 @@ html, body {
 body {
   position:fixed;
   transform-origin: top left;
+
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
   background: #eee;
   color: #eee;
 }
