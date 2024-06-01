@@ -19,7 +19,7 @@ body {
 .iframe-wrap {
   position: relative;
   width: 100vw;
-  padding-top: 100vh;
+  padding: calc(480 / 854 * 100%) 0 0;
   overflow:auto; 
   -webkit-overflow-scrolling:touch;
   border:2px solid #ccc; 
