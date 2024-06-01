@@ -4,7 +4,7 @@ html, body {
     width: 100%;
 }
 body {
-  position:fixed;
+//  position:fixed;
   transform-origin: top left;
 
   overflow-y:auto;
@@ -16,7 +16,23 @@ body {
   height: 100%; 
   width: 100%;
 }
-@keyframes fadeOut {
+.iframe-wrap {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+  overflow:auto; 
+  -webkit-overflow-scrolling:touch;
+  border:2px solid #ccc; 
+}
+.iframe-wrap iframe {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    border:none;
+    display:block;
+}@keyframes fadeOut {
     from {
         opacity: 1;
         height: 100vh;
