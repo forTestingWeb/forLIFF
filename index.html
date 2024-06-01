@@ -48,9 +48,10 @@ if (liff.isInClient()) {
     if (liff.isLoggedIn()) {
       loader.style.display="block";
       userId = liff.getDecodedIDToken().sub;
-    } else {
+    } else if(!flag){
       var ret = window.confirm("LINEでログインされていません。\n登録済み場合、ログインするとパスワード入力が不要になります。\nログインしますか？","はい","いいえ");
       if (ret) {
+        flag=1;
         var location = document.location;
         liff.login({ redirectUri: location });
         init();
