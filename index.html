@@ -67,6 +67,7 @@ if (liff.isInClient()) {
     } else if(!flag){
       var ret = window.confirm("LINEでログインされていません。\n登録済み場合、ログインするとパスワード入力が不要になります。\nログインしますか？","はい","いいえ");
       if (ret) {
+        flag=1;
         var location = document.location+"&flag=1";
         liff.login({ redirectUri: location });
         init();
