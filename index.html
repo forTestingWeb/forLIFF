@@ -36,8 +36,9 @@ var params = (new URL(document.location)).searchParams;
 var lm="",op="",id="",title="";
 var userId = "none";
 var flag=0;
+if(params.get('flag')) flag = Number(params.get('flag'));
+  
 init();
-//if (params.get('code')) window.close();
 function init(){
 if (liff.isInClient()) {
   liff.init({
@@ -60,14 +61,13 @@ if (liff.isInClient()) {
   }).then(() => {
 //成功時の処理
   // ここからLIFF SDKを使用可能
-    if (liff.isLoggedIn()) {
+    if (liff.isLoggedIn()||flag) {
       loader.style.display="block";
       userId = liff.getDecodedIDToken().sub;
     } else if(!flag){
       var ret = window.confirm("LINEでログインされていません。\n登録済み場合、ログインするとパスワード入力が不要になります。\nログインしますか？","はい","いいえ");
       if (ret) {
-        flag=1;
-        var location = document.location;
+        var location = document.location+"&flag=1";
         liff.login({ redirectUri: location });
         init();
 //        liff.login();
