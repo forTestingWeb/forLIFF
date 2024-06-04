@@ -41,6 +41,7 @@ if(params.get('flag')) flag = Number(params.get('flag'));
 init();
 function init(){
 if (liff.isInClient()) {
+  let　count = 0;
   liff.init({
     liffId: "2005353358-O06e5Z4z"
   }).then(() => {
@@ -53,7 +54,8 @@ if (liff.isInClient()) {
       jump();
   　}).catch((err) => {
 //エラー時の処理
-      init();
+      count++;
+      if (count<10)init();
     });
   });
 }else{
