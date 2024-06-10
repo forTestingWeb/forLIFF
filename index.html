@@ -53,13 +53,6 @@ if (liff.isInClient()) {
       if (liff.isLoggedIn()) loader.style.display="block";
       else liff.login();
       userId = liff.getDecodedIDToken().sub;
-      if (ua.indexOf('iPad') > 0) {//iPad用ここから
-        liff.openWindow({
-          url: document.location,
-          external: false,
-        });
-        return;
-      }//iPad用ここまで
       jump();
   　}).catch((err) => {
 //エラー時の処理
