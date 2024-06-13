@@ -105,14 +105,9 @@ function jump(){
     else title = "区域全体図の閲覧";
   }
   document.title = title;
-//  document.title = document.getElementById("embed").contentWindow.countUp();
+  document.title = document.getElementById("embed").contentDocument.title;
   loader.classList.add('loaded');
 }
-
-  document.getElementById("embed").addEventListener('load', function() {
-  // 子ページの読み込みが完了した後に実行される処理
-  document.title = document.getElementById("embed").contentDocument.title;
-  });
 
 </script>
 </body>
