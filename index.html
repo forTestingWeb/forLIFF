@@ -108,25 +108,11 @@ function jump(){
 //  document.title = document.getElementById("embed").contentWindow.countUp();
   loader.classList.add('loaded');
 }
-        //読み込み完了してから変数を取得するようにする
-        document.addEventListener
-        (
-            'DOMContentLoaded', event =>
-            {
-                document.getElementById("embed").onload = () =>
-                {
-                    //iframe内の変数にアクセスする
-                    document.title+=document.getElementById("embed").contentWindow.areaname;
-                    console.log(document.getElementById("embed").contentWindow.areaname);
-                }
-            }
-        );
-/*
+
   document.getElementById("embed").addEventListener('load', function() {
   // 子ページの読み込みが完了した後に実行される処理
   document.title = document.getElementById("embed").contentDocument.title;
   });
-  */
 
 </script>
 </body>
