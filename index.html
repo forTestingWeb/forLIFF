@@ -105,7 +105,7 @@ function jump(){
     else title = "区域全体図の閲覧";
   }
   document.title = title;
-  document.title = document.getElementById("embed").contentDocument.title;
+  document.title = el.contentDocument.title;
   loader.classList.add('loaded');
 }
 
