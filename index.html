@@ -98,11 +98,12 @@ function jump(){
     if (i!==8 && i!==9)cs=cs+parseInt(params.get('lm')[i]);
   }
   lm=Number(params.get('lm'));
-  if ( lm % 100000 >= 50000){
+  if (params.get('op')=="edit"){
+    lm%1000+"番の区域の編集";
+  } else if ( lm % 100000 >= 50000) {
     title = "区域番号"+lm%1000+"";
-  }　else {
-    if (lm%1000) title = lm%1000+"番の区域の閲覧";
-    else title = "区域全体図の閲覧";
+  } else {
+    title = "区域の閲覧";
   }
   document.title = title;
   loader.classList.add('loaded');
