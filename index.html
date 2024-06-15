@@ -37,9 +37,16 @@ const loader = document.getElementById('loader');
 var params = (new URL(document.location)).searchParams;
 var lm="",op="",id="",title="";
 var userId = "none";
-var flag=0;
+var flag=0,iPad=0;
 if(params.get('flag')) flag = Number(params.get('flag'));
-  
+if ( ua.indexOf('iPad') > 0 && !flag ) {
+  iPad = 1;
+  var location = document.location+"&flag=1";
+  var option = {"url": location,"external": false};
+  liff.openWindow(option);
+}
+else var isApple = 0;
+
 init();
 function init(){
 if (liff.isInClient()) {
