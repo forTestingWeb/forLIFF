@@ -52,7 +52,8 @@ if (liff.isInClient()) {
   // ここからLIFF SDKを使用可能
 if ( ua.indexOf('iPad') > 0 && !flag ) {
   var location = document.location+"&flag=1";
-  var option = {"url": location,"external": true};
+  var option = {"url": location,"external": false};
+  alert(location);
   liff.openWindow(option);
 }
       if (liff.isLoggedIn()) loader.style.display="block";
