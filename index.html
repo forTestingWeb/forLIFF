@@ -38,6 +38,7 @@ var params = (new URL(document.location)).searchParams;
 var lm="",op="",id="",title="";
 var userId = "none";
 var flag=0;
+var ua = navigator.userAgent;//iPadか判別する
 if(params.get('flag')) flag = Number(params.get('flag'));
 if ( ua.indexOf('iPad') > 0 && !flag ) {
   var location = document.location+"&flag=1";
