@@ -54,7 +54,8 @@ if ( ua.indexOf('iPad') > 0 && !flag ) {
   var location = document.location+"&flag=1";
   var option = {"url": location,"external": false};
   liff.closeWindow();
-//  liff.openWindow(option);
+  liff.openWindow(option);
+  return;
 }
       if (liff.isLoggedIn()) loader.style.display="block";
       else liff.login();
