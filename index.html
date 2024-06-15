@@ -55,7 +55,7 @@ if ( ua.indexOf('iPad') > 0 && !iPadflag ) {
   var location = document.location+"&iPadflag=1";
   var option = {"url": location,"external":false};
   liff.openWindow(option);
-  document.title = "読み込み終了。このウィンドウは消してください。";
+  document.title = "このウィンドウは閉じてください。";
   return;
 }
       if (liff.isLoggedIn()) loader.style.display="block";
