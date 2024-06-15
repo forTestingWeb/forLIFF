@@ -39,6 +39,7 @@ var lm="",op="",id="",title="";
 var userId = "none";
 var flag=0;
 var ua = navigator.userAgent;//iPadか判別する
+var iPadflag=0;
 if(params.get('flag')) flag = Number(params.get('flag'));
 init();
 function init(){
@@ -50,9 +51,9 @@ if (liff.isInClient()) {
 //成功時の処理
     liff.ready.then(() => {
   // ここからLIFF SDKを使用可能
-if ( ua.indexOf('iPad') > 0 && !flag ) {
-  var location = document.location+"&flag=1";
-  var option = {"url": location,"external": true};
+if ( ua.indexOf('iPad') > 0 && !iPadflag ) {
+  var location = document.location+"&iPadflag=1";
+  var option = {"url": location,"external":false};
   liff.closeWindow();
   liff.openWindow(option);
   return;
