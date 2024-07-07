@@ -52,7 +52,7 @@ if (liff.isInClient()) {
 //成功時の処理
     liff.ready.then(() => {
   // ここからLIFF SDKを使用可能
-if ( (ua.indexOf('iPad') > 0)/*||(ua.indexOf('iPhone') > 0)*/&& !iOSflag ) {
+if ( (ua.indexOf('iPad') > 0)/*||(ua.indexOf('iPhone') > 0*/)&& !iOSflag ) {
   var location = document.location+"&iOSflag=1";
   var option = {"url": location,"external":false};
   liff.openWindow(option);
