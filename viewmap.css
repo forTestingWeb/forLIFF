@@ -1,0 +1,161 @@
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html {
+  height: 100%; 
+  width: 100%;
+}
+body{
+  position: absolute;
+  transform-origin: top left;
+}
+input[type="button"],
+select,
+textarea {
+  -webkit-appearance: none;
+  border-radius: 0;
+  display: inline-block;
+//  text-align: center;
+  font-size: 14px;
+  color: #000;
+  background-color: #eee;
+  border: 1px solid #000;
+}
+input[type="button"]{
+  font-size: 16px;
+  padding: 0.2em 0.5em;
+  border-radius: 10%;/*角を丸く*/
+}
+textarea {
+  height: 100px;
+  width: 290px;
+  resize: none;
+  background-color:#fff;
+}
+#map {cursor:pointer;}
+#btn_container {
+	position: absolute;
+	left:48px; top:11px;
+	z-index: 1000;
+}
+.leaflet-popup-content {
+  font-size: 16px;
+}
+.leaflet-popup-close-button {
+  font-size: 18px;
+}
+.leaflet-popup-content-wrapper {
+  font-family:monospace;
+}
+.leaflet-top{
+    z-index:10000;
+}
+.leaflet-right{
+    z-index:10000;
+}
+a { color:#0000FF; text-decoration:none; }
+
+.diviconK {	/* 文字ラベル */
+display: inline-block;
+text-align: center;/*左右中央*/
+width: 40px;
+height: 40px;
+line-height: 40px;/*heightと同じ値に*/
+border-radius: 50%;/*角を丸く*/
+color: #fff;
+background-color: #333;
+opacity: 0.6;
+font-size: 24px;
+//font-weight: bold;
+}
+.diviconB {	/* 文字ラベル */
+display: inline-block;
+text-align: center;/*左右中央*/
+width: 40px;
+height: 40px;
+line-height: 40px;/*heightと同じ値に*/
+border-radius: 50%;/*角を丸く*/
+color: #fff;
+background-color: #00f;
+opacity: 0.6;
+font-size: 24px;
+font-weight: bold;
+}
+.diviconP {	/* 文字ラベル */
+display: inline-block;
+text-align: center;/*左右中央*/
+width: 40px;
+height: 40px;
+line-height: 40px;/*heightと同じ値に*/
+border-radius: 50%;/*角を丸く*/
+color: #fff;
+background-color: #80f;
+opacity: 0.6;
+font-size: 24px;
+font-weight: bold;
+}
+.diviconR {	/* 文字ラベル */
+display: inline-block;
+text-align: center;/*左右中央*/
+width: 40px;
+height: 40px;
+line-height: 40px;/*heightと同じ値に*/
+border-radius: 50%;/*角を丸く*/
+color: #fff;
+background-color: #f00;
+opacity: 0.6;
+font-size: 24px;
+font-weight: bold;
+}
+.diviconO {	/* 文字ラベル */
+display: inline-block;
+text-align: center;/*左右中央*/
+width: 40px;
+height: 40px;
+line-height: 40px;/*heightと同じ値に*/
+border-radius: 50%;/*角を丸く*/
+color: #fff;
+background-color: #f90;
+opacity: 0.6;
+font-size: 24px;
+//font-weight: bold;
+}
+.diviconG {	/* 文字ラベル */
+display: inline-block;
+text-align: center;/*左右中央*/
+width: 40px;
+height: 40px;
+line-height: 40px;/*heightと同じ値に*/
+border-radius: 50%;/*角を丸く*/
+color: #fff;
+background-color: #0f0;
+opacity: 0.6;
+font-size: 24px;
+font-weight: bold;
+}
+.diviconOmit {	/* 文字ラベル */
+display: inline-block;
+text-align: center;/*左右中央*/
+width: 40px;
+height: 40px;
+line-height: 40px;/*heightと同じ値に*/
+border-radius: 50%;/*角を丸く*/
+color: #f00;
+background-color: #333;
+opacity: 0.6;
+font-size: 24px;
+font-weight: bold;
+}
+.diviconNopark {	/* 文字ラベル */
+display: inline-block;
+text-align: center;/*左右中央*/
+width: 12px;
+height: 12px;
+line-height: 12px;/*heightと同じ値に*/
+border-radius: 50%;/*角を丸く*/
+color: #ff0;
+background-color: #000;
+opacity: 1.0;
+font-size: 12px;
+font-weight: bold;
+}
+</style>
