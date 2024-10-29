@@ -98,7 +98,7 @@ function jump(){
     if(params.get('op')) op = "&op="+params.get('op');
     id = "&id="+userId;
     if (params.get('dev')==1) var src="https://script.google.com/macros/s/AKfycbzzuU7E7-Syg2FrAQyBxoJS_dLqSHw0SjaUGt6YFjEtpMtapyNyVx9QjjemKdxuYo8pgg/exec?"+lm+op+id;
-    else var src="https://script.google.com/macros/s/AKfycbwWm-EHjO4jl7-12xSMHG1QeW_fVoVov2NfP6RukE7Q2MHn9KM/exec?"+lm+op+id;
+    else var src="https://script.google.com/macros/s/AKfycbzIjynCeTPrYYTLNfJy8vNxrsNfj-KQBLKEFTvTWdrdsHMyhBJRuXgfLNxM5E8LpFOz/exec"+lm+op+id;
     const el = document.getElementById("embed");
     el.src=src;
   }
