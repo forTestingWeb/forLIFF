@@ -99,7 +99,6 @@ function jump(){
     id = "&id="+userId;
     if (params.get('dev')==1) var src="https://script.google.com/macros/s/AKfycbzzuU7E7-Syg2FrAQyBxoJS_dLqSHw0SjaUGt6YFjEtpMtapyNyVx9QjjemKdxuYo8pgg/exec?"+lm+op+id;
     else var src="https://script.google.com/macros/s/AKfycbyw-r2rpN2W40EabhnJf_AGtLHS4lP8NkwJpmi_VRi46e4yIMgecfl9qr3wMygB2qhx/exec?"+lm+op+id;
-    alert(src);
     const el = document.getElementById("embed");
     el.src=src;
   }
