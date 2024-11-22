@@ -53,7 +53,7 @@ textarea {
     z-index:10000;
 }
 a { color:#0000FF; text-decoration:none; }
-.leaflet-marker-icon marker-cluster marker-cluster-small leaflet-zoom-animated leaflet-interactive {
+.leaflet-marker-icon.marker-cluster.marker-cluster-small.leaflet-zoom-animated.leaflet-interactive {
   z-index: 5000 !important;
 }
 
