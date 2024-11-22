@@ -53,6 +53,9 @@ textarea {
     z-index:10000;
 }
 a { color:#0000FF; text-decoration:none; }
+.leaflet-marker-icon.marker-cluster {
+  z-index: 1000 !important;
+}
 
 .diviconK {	/* 文字ラベル */
 display: inline-block;
