@@ -65,7 +65,7 @@ color: #fff;
 background-color: #333;
 opacity: 0.6;
 font-size: 24px;
-//font-weight: bold;
+z-index:10;
 }
 .diviconB {	/* 文字ラベル */
 display: inline-block;
