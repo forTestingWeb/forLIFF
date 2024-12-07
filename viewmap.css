@@ -7,7 +7,14 @@ html {
 body{
   position: absolute;
   transform-origin: top left;
+  -webkit-text-size-adjust: 100%; /* テキストサイズの自動調整を無効にする */
 }
+button {
+  -webkit-appearance: none; /* ボタンのデフォルトスタイルを無効にする */
+  -moz-appearance: none;
+  appearance: none;
+}
+
 input[type="button"],
 select,
 textarea {
