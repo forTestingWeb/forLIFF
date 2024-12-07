@@ -13,6 +13,11 @@ button {
   -webkit-appearance: none; /* ボタンのデフォルトスタイルを無効にする */
   -moz-appearance: none;
   appearance: none;
+  background: none; /* 背景をリセット */
+  border: none; /* ボーダーをリセット */
+  padding: 0; /* パディングをリセット */
+  font: inherit; /* フォントを継承 */
+  color: inherit; /* 色を継承 */
 }
 
 input[type="button"],
