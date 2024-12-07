@@ -3,13 +3,13 @@
 html {
   height: 100%; 
   width: 100%;
-  -webkit-appearance: none; /* ボタンのデフォルトスタイルを無効にする */
+  -webkit-appearance: none; /* Appleのデフォルトスタイルを無効にする */
+  -webkit-text-size-adjust: 100%; /* テキストサイズの自動調整を無効にする */
   -moz-appearance: none;
 }
 body{
   position: absolute;
   transform-origin: top left;
-  -webkit-text-size-adjust: 100%; /* テキストサイズの自動調整を無効にする */
 }
 input[type="button"],
 select,
