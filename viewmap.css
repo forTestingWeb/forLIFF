@@ -3,21 +3,19 @@
 html {
   height: 100%; 
   width: 100%;
-  -webkit-appearance: none; /* Appleのデフォルトスタイルを無効にする */
-  -webkit-text-size-adjust: 100%; /* テキストサイズの自動調整を無効にする */
-  -moz-appearance: none;
 }
 body{
   position: absolute;
   transform-origin: top left;
 }
+
 input[type="button"],
+button,
 select,
 textarea {
   -webkit-appearance: none;
   border-radius: 0;
   display: inline-block;
-//  text-align: center;
   font-size: 14px;
   color: #000;
   background-color: #eee;
