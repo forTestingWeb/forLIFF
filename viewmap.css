@@ -98,15 +98,15 @@ font-weight: bold;
 .diviconR {	/* 文字ラベル */
 display: inline-block;
 text-align: center;/*左右中央*/
-width: 40px;
+width: 45px;
 height: 40px;
-line-height: 40px;/*heightと同じ値に*/
-border-radius: 50%;/*角を丸く*/
+line-height: 52px;/*heightと同じ値に*/
 color: #fff;
 background-color: #f00;
 opacity: 0.6;
 font-size: 24px;
 font-weight: bold;
+clip-path: polygon(50% 0%, 0% 100%, 100% 100%); /* 三角形の形状 */
 }
 .diviconO {	/* 文字ラベル */
 display: inline-block;
