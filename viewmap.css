@@ -47,7 +47,9 @@ textarea {
   font-size: 18px;
 }
 .leaflet-popup-content-wrapper {
-  font-family:monospace;
+	overflow-x: auto;
+	overflow-y: auto;
+	font-family:monospace;
 }
 .leaflet-top{
     z-index:10000;
