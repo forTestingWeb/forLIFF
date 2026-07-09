@@ -3,121 +3,120 @@
 <head>
 <meta name="robots" content="noindex,nofollow,noarchive">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
-<link rel="stylesheet" type="text/css" media="all" href="style.css">
 <title>読み込み中…</title>
-<base target="_top">
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-<script>
-  /* ピッチインピッチアウトによる拡大縮小を禁止 */
-  document.documentElement.addEventListener('touchstart', function (e) {
-  if (e.touches.length >= 2) {e.preventDefault();}
-  },  {passive: false} );
 
-  /* ダブルタップによる拡大を禁止 */
-  var t = 0;
-  document.documentElement.addEventListener('touchend', function (e) {
-  var now = new Date().getTime();
-  if ((now - t) < 350){
-    e.preventDefault();
-  }
+<script>
+// ピンチイン・ピンチアウト禁止
+document.documentElement.addEventListener('touchstart', function (e) {
+  if (e.touches.length >= 2) e.preventDefault();
+}, { passive: false });
+
+// ダブルタップ拡大禁止
+let t = 0;
+document.documentElement.addEventListener('touchend', function (e) {
+  const now = new Date().getTime();
+  if (now - t < 350) e.preventDefault();
   t = now;
-  }, false);
+}, false);
 </script>
+
+<style>
+#loader {
+  text-align:center;
+  padding-top:50px;
+}
+.loaded { display:none; }
+</style>
 </head>
+
 <body>
-<!-- -->
-<div id="loader">
-<p><br><br>　読み込み中…</p>
-</div>
-<div class="iframe-wrap">
-　<iframe class="embed" name="_self" id="embed" allow="geolocation" src="about:blank" frameboader="0"></iframe>
-</div>
+<div id="loader"><p><br><br>　読み込み中…</p></div>
+
 <script>
 const loader = document.getElementById('loader');
-var params = (new URL(document.location)).searchParams;
-var lm="",op="",id="",title="";
-var userId = "none";
-var flag=0;
-var ua = navigator.userAgent;//iPadか判別する
-var iOSflag=0;
-if(params.get('flag')) flag = Number(params.get('flag'));
-init();
-function init(){
+const params = new URL(document.location).searchParams;
 
-if (liff.isInClient()) {
-  let　count = 0;
-  liff.init({
-    liffId: "2005353358-O06e5Z4z"
-  }).then(() => {
-//成功時の処理
-    liff.ready.then(() => {
-  // ここからLIFF SDKを使用可能
-if ( (ua.indexOf('iPad') > 0)/*||(ua.indexOf('iPhone') > 0)*/&& !iOSflag ) {
-  var location = document.location+"&iOSflag=1";
-  var option = {"url": location,"external":false};
-  liff.openWindow(option);
-  document.title = "このウィンドウは閉じてください。";
-  return;
-}
-      if (liff.isLoggedIn()) loader.style.display="block";
-      else liff.login();
-      userId = liff.getDecodedIDToken().sub;
-      jump();
-  　}).catch((err) => {
-//エラー時の処理
-      count++;
-      if (count<10)init();
-    });
-  });
-}else{
-  liff.init({
-    liffId: "2005353358-O06e5Z4z"
-  }).then(() => {
-//成功時の処理
-  // ここからLIFF SDKを使用可能
-    if (liff.isLoggedIn()) {
-      loader.style.display="block";
-      userId = liff.getDecodedIDToken().sub;
-    } else if(!flag){
-      var ret = window.confirm("LINEでログインされていません。\n登録済み場合、ログインするとパスワード入力が不要になります。\nログインしますか？","はい","いいえ");
-      if (ret) {
-        flag=1;
-        var location = document.location+"&flag=1";
-        liff.login({ redirectUri: location });
-        init();
-//        liff.login();
+let lm = "";
+let op = "";
+let id = "";
+let title = "";
+let userId = "none";
+let flag = params.get('flag') ? Number(params.get('flag')) : 0;
+
+const ua = navigator.userAgent;
+let iOSflag = params.get('iOSflag') ? 1 : 0;
+
+init();
+
+function init() {
+  liff.init({ liffId: "2005353358-O06e5Z4z" })
+    .then(() => {
+      if (liff.isInClient()) {
+        liff.ready.then(() => {
+          if (ua.indexOf('iPad') > 0 && !iOSflag) {
+            const location = document.location.href + "&iOSflag=1";
+            liff.openWindow({ url: location, external: false });
+            document.title = "このウィンドウは閉じてください。";
+            return;
+          }
+
+          if (liff.isLoggedIn()) loader.style.display = "block";
+          else liff.login();
+
+          userId = liff.getDecodedIDToken().sub;
+          jump();
+        });
+      } else {
+        if (liff.isLoggedIn()) {
+          loader.style.display = "block";
+          userId = liff.getDecodedIDToken().sub;
+        } else if (!flag) {
+          const ret = window.confirm("LINEでログインされていません。\n登録済みの場合、ログインするとパスワード入力が不要になります。\nログインしますか？");
+          if (ret) {
+            flag = 1;
+            const location = document.location.href + "&flag=1";
+            liff.login({ redirectUri: location });
+            return;
+          }
+        }
+        jump();
       }
+    });
+}
+
+function jump() {
+  if (params.get('lm')) {
+    lm = "lm=" + params.get('lm');
+    if (params.get('op')) op = "&op=" + params.get('op');
+    id = "&id=" + userId;
+
+    let src = "";
+    if (params.get('dev') == 1) {
+      src = "https://script.google.com/macros/s/AKfycbzzuU7E7-Syg2FrAQyBxoJS_dLqSHw0SjaUGt6YFjEtpMtapyNyVx9QjjemKdxuYo8pgg/exec?" + lm + op + id;
+    } else {
+      src = "https://script.google.com/macros/s/AKfycbyw-r2rpN2W40EabhnJf_AGtLHS4lP8NkwJpmi_VRi46e4yIMgecfl9qr3wMygB2qhx/exec?" + lm + op + id;
     }
-    jump();
-  });
-}
-}
-function jump(){
-  if(params.get('lm')){
-    lm = "lm="+params.get('lm');
-    if(params.get('op')) op = "&op="+params.get('op');
-    id = "&id="+userId;
-    if (params.get('dev')==1) var src="https://script.google.com/macros/s/AKfycbzzuU7E7-Syg2FrAQyBxoJS_dLqSHw0SjaUGt6YFjEtpMtapyNyVx9QjjemKdxuYo8pgg/exec?"+lm+op+id;
-    else var src="https://script.google.com/macros/s/AKfycbyw-r2rpN2W40EabhnJf_AGtLHS4lP8NkwJpmi_VRi46e4yIMgecfl9qr3wMygB2qhx/exec?"+lm+op+id;
-    const el = document.getElementById("embed");
-    el.src=src;
+
+    // iframe を使わずにトップへ遷移
+    window.top.location.href = src;
+    return;
   }
-  var cs = 0; 
-  for(var i=0;i<params.get('lm').length;i++){
-    if (i!==8 && i!==9)cs=cs+parseInt(params.get('lm')[i]);
-  }
-  lm=Number(params.get('lm'));
-  if (params.get('op')=="edit"){
-    title = lm%1000+"番の区域の編集";
-  } else if ( lm % 100000 >= 50000) {
-    title = "区域番号"+lm%1000+"";
+
+  // タイトル設定
+  const lmNum = Number(params.get('lm'));
+  if (params.get('op') == "edit") {
+    title = lmNum % 1000 + "番の区域の編集";
+  } else if (lmNum % 100000 >= 50000) {
+    title = "区域番号" + (lmNum % 1000);
   } else {
     title = "区域の閲覧";
   }
+
   document.title = title;
   loader.classList.add('loaded');
 }
-
 </script>
+
 </body>
 </html>
