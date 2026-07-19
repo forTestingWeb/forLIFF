@@ -109,25 +109,56 @@ function jump() {
 
     let loaded = false;
 
+    /* ------------------------------
+       onload で正常判定
+       ------------------------------ */
     iframe.onload = function () {
-      loaded = true;
-      loader.style.display = "none";
+      try {
+        const url = iframe.contentWindow.location.href;
+
+        // GAS が拒否した場合は Google の別ページになる
+        if (!url.includes("script.google.com")) {
+          window.top.location.href = src;
+          return;
+        }
+
+        // 正常読み込み
+        loaded = true;
+        loader.style.display = "none";
+
+      } catch (e) {
+        // cross-origin → 読み込み失敗
+        window.top.location.href = src;
+      }
     };
 
-    // Google規制・拒否検知
+    /* ------------------------------
+       Google 規制・拒否検知
+       ------------------------------ */
     const rejectCheck = setInterval(() => {
       if (loaded) {
         clearInterval(rejectCheck);
         return;
       }
+
       try {
-        const test = iframe.contentWindow.location.href;
+        const url = iframe.contentWindow.location.href;
+
+        // 想定外のURLなら規制
+        if (!url.includes("script.google.com")) {
+          window.top.location.href = src;
+        }
+
       } catch (e) {
+        // 完全に読み込めていない
         window.top.location.href = src;
       }
+
     }, 1000);
 
-    // タイムアウト（8秒）
+    /* ------------------------------
+       タイムアウト（8秒）
+       ------------------------------ */
     setTimeout(() => {
       if (!loaded) {
         window.top.location.href = src;
@@ -136,7 +167,7 @@ function jump() {
   }
 
   /* ------------------------------
-     ② タイトル設定（必ず実行される）
+     ② タイトル設定（必ず実行）
      ------------------------------ */
   let cs = 0;
   for (let i = 0; i < params.get('lm').length; i++) {
