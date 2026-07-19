@@ -104,55 +104,28 @@ function jump() {
 
     loader.style.display = "block";
 
-    let loaded = false;
+    let succeeded = false;   // ← 一度でも成功したら true
 
-    /* ★ iframe の本当の読み込み成功判定 ★ */
+    // ★ iframe の本当の読み込み成功判定（Google規制も含む）
     iframe.onload = function () {
       try {
-        const test = iframe.contentWindow.location.href;
-        loaded = true;
+        const test = iframe.contentWindow.location.href; // Google規制なら例外
+        succeeded = true;          // ← 成功したらフラグを立てる
         loader.style.display = "none";
       } catch (e) {
-        window.top.location.href = src;
+        // Google規制による失敗 → succeeded は false のまま
       }
     };
 
-    /* ★ rejectCheck（上限 5 回）★ */
-    let rejectCount = 0;
-    const rejectLimit = 5;
-
-    const rejectCheck = setInterval(() => {
-      if (loaded) {
-        clearInterval(rejectCheck);
-        return;
-      }
-
-      rejectCount++;
-
-      try {
-        const test = iframe.contentWindow.location.href;
-      } catch (e) {
-        clearInterval(rejectCheck);
-        window.top.location.href = src;
-        return;
-      }
-
-      if (rejectCount >= rejectLimit) {
-        clearInterval(rejectCheck);
-        window.top.location.href = src;
-      }
-
-    }, 1000);
-
-    /* ★ タイムアウト（8秒）★ */
+    // ★ 3秒後に「失敗していたらだけ」遷移
     setTimeout(() => {
-      if (!loaded) {
+      if (!succeeded) {
         window.top.location.href = src;
       }
-    }, 8000);
+    }, 3000);
   }
 
-  /* ★ タイトル設定（必ず実行）★ */
+  // ★ タイトル設定（必ず実行）
   let cs = 0;
   for (let i = 0; i < params.get('lm').length; i++) {
     if (i !== 8 && i !== 9) cs += parseInt(params.get('lm')[i]);
