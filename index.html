@@ -86,6 +86,10 @@ function init() {
 }
 
 function jump() {
+
+  /* ------------------------------
+     ① iframe 読み込み処理
+     ------------------------------ */
   if (params.get('lm')) {
 
     lm = "lm=" + params.get('lm');
@@ -105,13 +109,12 @@ function jump() {
 
     let loaded = false;
 
-    // 正常ロード
     iframe.onload = function () {
       loaded = true;
       loader.style.display = "none";
     };
 
-    // Google規制・拒否検知（例外発生）
+    // Google規制・拒否検知
     const rejectCheck = setInterval(() => {
       if (loaded) {
         clearInterval(rejectCheck);
@@ -130,17 +133,18 @@ function jump() {
         window.top.location.href = src;
       }
     }, 8000);
-
-    return;
   }
 
-  // タイトル設定
+  /* ------------------------------
+     ② タイトル設定（必ず実行される）
+     ------------------------------ */
   let cs = 0;
   for (let i = 0; i < params.get('lm').length; i++) {
     if (i !== 8 && i !== 9) cs += parseInt(params.get('lm')[i]);
   }
 
   lm = Number(params.get('lm'));
+
   if (params.get('op') == "edit") {
     title = lm % 1000 + "番の区域の編集";
   } else if (lm % 100000 >= 50000) {
