@@ -110,58 +110,21 @@ function jump() {
     let loaded = false;
 
     /* ------------------------------
-       onload で正常判定
+       GAS 側からの LOADED 通知を受け取る
        ------------------------------ */
-    iframe.onload = function () {
-      try {
-        const url = iframe.contentWindow.location.href;
-
-        // GAS が拒否した場合は Google の別ページになる
-        if (!url.includes("script.google.com")) {
-          window.top.location.href = src;
-          return;
-        }
-
-        // 正常読み込み
+    window.addEventListener("message", (e) => {
+      if (e.data === "LOADED") {
         loaded = true;
         loader.style.display = "none";
-
-      } catch (e) {
-        // cross-origin → 読み込み失敗
-        window.top.location.href = src;
       }
-    };
-
-    /* ------------------------------
-       Google 規制・拒否検知
-       ------------------------------ */
-    const rejectCheck = setInterval(() => {
-      if (loaded) {
-        clearInterval(rejectCheck);
-        return;
-      }
-
-      try {
-        const url = iframe.contentWindow.location.href;
-
-        // 想定外のURLなら規制
-        if (!url.includes("script.google.com")) {
-          window.top.location.href = src;
-        }
-
-      } catch (e) {
-        // 完全に読み込めていない
-        window.top.location.href = src;
-      }
-
-    }, 1000);
+    });
 
     /* ------------------------------
        タイムアウト（8秒）
        ------------------------------ */
     setTimeout(() => {
       if (!loaded) {
-        window.top.location.href = src;
+        liff.openWindow({ url: src, external: true });
       }
     }, 8000);
   }
