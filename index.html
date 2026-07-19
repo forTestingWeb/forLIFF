@@ -103,18 +103,15 @@ function jump() {
     iframe.src = src;
 
     loader.style.display = "block";
-    let done = false;
     let succeeded = false;   // ← 一度でも成功したら true
 
     // ★ iframe の本当の読み込み成功判定（Google規制も含む）
     iframe.onload = function () {
       try {
         const test = iframe.contentWindow.location.href; // Google規制なら例外
-        done = true;
         succeeded = true;          // ← 成功したらフラグを立てる
         loader.style.display = "none";
       } catch (e) {
-        done = true;
         // Google規制による失敗 → succeeded は false のまま
       }
     };
@@ -122,7 +119,7 @@ function jump() {
     // ★ 3秒後に「失敗していたらだけ」遷移
     setTimeout(() => {
       if (done&&!succeeded) {
-        window.top.location.href = src;
+//        window.top.location.href = src;
       }
     }, 3000);
   }
