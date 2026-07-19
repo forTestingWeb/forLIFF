@@ -124,7 +124,7 @@ function jump() {
        ------------------------------ */
     setTimeout(() => {
       if (!loaded) {
-        liff.openWindow({ url: src, external: true });
+        window.top.location.href = src;
       }
     }, 8000);
   }
