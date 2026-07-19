@@ -117,12 +117,12 @@ function jump() {
       }
     };
 
-    // ★ 3秒後に「失敗していたら」遷移
+    // ★ 3秒後に「失敗していたらだけ」遷移
     setTimeout(() => {
       if (!succeeded) {
         window.top.location.href = src;
       }
-    }, 8000);
+    }, 3000);
   }
 
   // ★ タイトル設定（必ず実行）
