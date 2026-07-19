@@ -114,29 +114,47 @@ function jump() {
       loader.style.display = "none";
     };
 
-    // Google規制・拒否検知
+    /* ------------------------------
+       ★ rejectCheck（上限 5 回）
+       ------------------------------ */
+    let rejectCount = 0;
+    const rejectLimit = 5;
+
     const rejectCheck = setInterval(() => {
       if (loaded) {
         clearInterval(rejectCheck);
         return;
       }
+
+      rejectCount++;
+
       try {
         const test = iframe.contentWindow.location.href;
       } catch (e) {
+        clearInterval(rejectCheck);
+        window.top.location.href = src;
+        return;
+      }
+
+      if (rejectCount >= rejectLimit) {
+        clearInterval(rejectCheck);
         window.top.location.href = src;
       }
+
     }, 1000);
 
-    // タイムアウト（8秒）
+    /* ------------------------------
+       タイムアウト（8秒）
+       ------------------------------ */
     setTimeout(() => {
       if (!loaded) {
         window.top.location.href = src;
       }
-    }, 8000);
+    }, 5000);
   }
 
   /* ------------------------------
-     ② タイトル設定（必ず実行される）
+     ② タイトル設定（必ず実行）
      ------------------------------ */
   let cs = 0;
   for (let i = 0; i < params.get('lm').length; i++) {
