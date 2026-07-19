@@ -87,9 +87,6 @@ function init() {
 
 function jump() {
 
-  /* ------------------------------
-     ① iframe 読み込み処理
-     ------------------------------ */
   if (params.get('lm')) {
 
     lm = "lm=" + params.get('lm');
@@ -109,14 +106,18 @@ function jump() {
 
     let loaded = false;
 
+    /* ★ iframe の本当の読み込み成功判定 ★ */
     iframe.onload = function () {
-      loaded = true;
-      loader.style.display = "none";
+      try {
+        const test = iframe.contentWindow.location.href;
+        loaded = true;
+        loader.style.display = "none";
+      } catch (e) {
+        window.top.location.href = src;
+      }
     };
 
-    /* ------------------------------
-       ★ rejectCheck（上限 5 回）
-       ------------------------------ */
+    /* ★ rejectCheck（上限 5 回）★ */
     let rejectCount = 0;
     const rejectLimit = 5;
 
@@ -142,21 +143,16 @@ function jump() {
       }
 
     }, 1000);
-    /* ------------------------------
-       タイムアウト（8秒）
-       ------------------------------ */
-/*
+
+    /* ★ タイムアウト（8秒）★ */
     setTimeout(() => {
       if (!loaded) {
         window.top.location.href = src;
       }
     }, 8000);
-    */
   }
 
-  /* ------------------------------
-     ② タイトル設定（必ず実行）
-     ------------------------------ */
+  /* ★ タイトル設定（必ず実行）★ */
   let cs = 0;
   for (let i = 0; i < params.get('lm').length; i++) {
     if (i !== 8 && i !== 9) cs += parseInt(params.get('lm')[i]);
