@@ -107,13 +107,12 @@ function jump() {
     let done = false;
     // ★ iframe の本当の読み込み成功判定（Google規制も含む）
     iframe.onload = function () {
+      done = true;
       try {
         const test = iframe.contentWindow.location.href; // Google規制なら例外
         succeeded = true;          // ← 成功したらフラグを立てる
-        done = true;
         loader.style.display = "none";
       } catch (e) {
-        done = true;
         // Google規制による失敗 → succeeded は false のまま
       }
     };
