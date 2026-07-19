@@ -112,12 +112,21 @@ function jump() {
     /* ------------------------------
        GAS 側からの LOADED 通知を受け取る
        ------------------------------ */
+    /*
     window.addEventListener("message", (e) => {
       if (e.data === "LOADED") {
         loaded = true;
         loader.style.display = "none";
       }
     });
+    */
+window.addEventListener("message", (e) => {
+  if (e.data.type === "TITLE") {
+    loaded = true;
+    loader.style.display = "none";
+    document.title = e.data.value;
+  }
+});
 
     /* ------------------------------
        タイムアウト（8秒）
