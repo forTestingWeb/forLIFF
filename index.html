@@ -1,142 +1,65 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="robots" content="noindex,nofollow,noarchive">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
-<link rel="stylesheet" type="text/css" media="all" href="style.css">
-<title>読み込み中…</title>
-<base target="_top">
-<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-
-<script>
-// ピンチインピンチアウト禁止
-document.documentElement.addEventListener('touchstart', function (e) {
-  if (e.touches.length >= 2) e.preventDefault();
-}, { passive: false });
-
-// ダブルタップ拡大禁止
-let t = 0;
-document.documentElement.addEventListener('touchend', function (e) {
-  const now = new Date().getTime();
-  if (now - t < 350) e.preventDefault();
-  t = now;
-}, false);
-</script>
-</head>
-
-<body>
-<div id="loader">
-<p><br><br>　読み込み中…</p>
-</div>
-
-<div class="iframe-wrap">
-  <iframe class="embed" id="embed" src="about:blank" allow="geolocation"></iframe>
-</div>
-
-<script>
-const loader = document.getElementById('loader');
-const params = new URL(document.location).searchParams;
-
-let lm="", op="", id="", title="";
-let userId = "none";
-let flag = params.get('flag') ? Number(params.get('flag')) : 0;
-
-const ua = navigator.userAgent;
-let iOSflag = params.get('iOSflag') ? 1 : 0;
-
-init();
-
-function init() {
-  liff.init({ liffId: "2005353358-O06e5Z4z" }).then(() => {
-
-    if (liff.isInClient()) {
-      liff.ready.then(() => {
-
-        if (ua.indexOf('iPad') > 0 && !iOSflag) {
-          const location = document.location + "&iOSflag=1";
-          liff.openWindow({ url: location, external: false });
-          document.title = "このウィンドウは閉じてください。";
-          return;
-        }
-
-        if (liff.isLoggedIn()) loader.style.display = "block";
-        else liff.login();
-
-        userId = liff.getDecodedIDToken().sub;
-        jump();
-      });
-
-    } else {
-      if (liff.isLoggedIn()) {
-        loader.style.display = "block";
-        userId = liff.getDecodedIDToken().sub;
-
-      } else if (!flag) {
-        const ret = window.confirm("LINEでログインされていません。\n登録済みの場合、ログインするとパスワード入力が不要になります。\nログインしますか？");
-        if (ret) {
-          flag = 1;
-          const location = document.location + "&flag=1";
-          liff.login({ redirectUri: location });
-          return;
-        }
-      }
-      jump();
-    }
-  });
-}
-
 function jump() {
-
   if (params.get('lm')) {
-
     lm = "lm=" + params.get('lm');
     if (params.get('op')) op = "&op=" + params.get('op');
     id = "&id=" + userId;
 
     let src = "";
-    if (params.get('dev') == 1)
+    if (params.get('dev') == 1) {
       src = "https://script.google.com/macros/s/AKfycbzzuU7E7-Syg2FrAQyBxoJS_dLqSHw0SjaUGt6YFjEtpMtapyNyVx9QjjemKdxuYo8pgg/exec?" + lm + op + id;
-    else
+    } else {
       src = "https://script.google.com/macros/s/AKfycbyw-r2rpN2W40EabhnJf_AGtLHS4lP8NkwJpmi_VRi46e4yIMgecfl9qr3wMygB2qhx/exec?" + lm + op + id;
+    }
 
-    const iframe = document.getElementById("embed");
+    // iframe で読み込み
+    const iframe = document.createElement("iframe");
     iframe.src = src;
+    iframe.style.width = "100vw";
+    iframe.style.height = "100vh";
+    iframe.style.border = "none";
+    document.getElementById("iframeWrap").appendChild(iframe);
 
     loader.style.display = "block";
-    let succeeded = false;   // ← 一度でも成功したら true
-    let done = false;
-    // ★ iframe の本当の読み込み成功判定（Google規制も含む）
+
+    let loaded = false;
+
+    // 正常ロード
     iframe.onload = function () {
-      done = true;
-      try {
-        const test = iframe.contentWindow.location.href; // Google規制なら例外
-        succeeded = true;          // ← 成功したらフラグを立てる
-        loader.style.display = "none";
-      } catch (e) {
-        // Google規制による失敗 → succeeded は false のまま
-      }
+      loaded = true;
+      loader.style.display = "none";
     };
 
-    // ★ 3秒後に「失敗していたらだけ」遷移
-    setTimeout(() => {
-      if (!done&&!succeeded) {
+    // Google規制・拒否検知（例外発生）
+    const rejectCheck = setInterval(() => {
+      if (loaded) {
+        clearInterval(rejectCheck);
+        return;
+      }
+      try {
+        const test = iframe.contentWindow.location.href;
+      } catch (e) {
+        // iframe が拒否された → 同じURLをトップで開く
         window.top.location.href = src;
       }
-    }, 3000);
+    }, 1000);
+
+    // タイムアウト（8秒）
+    setTimeout(() => {
+      if (!loaded) {
+        // iframe が応答しない → 同じURLをトップで開く
+        window.top.location.href = src;
+      }
+    }, 8000);
+
+    return;
   }
 
-  // ★ タイトル設定（必ず実行）
-  let cs = 0;
-  for (let i = 0; i < params.get('lm').length; i++) {
-    if (i !== 8 && i !== 9) cs += parseInt(params.get('lm')[i]);
-  }
-
-  lm = Number(params.get('lm'));
-
+  // タイトル設定（元の処理）
+  const lmNum = Number(params.get('lm'));
   if (params.get('op') == "edit") {
-    title = lm % 1000 + "番の区域の編集";
-  } else if (lm % 100000 >= 50000) {
-    title = "区域番号" + (lm % 1000);
+    title = lmNum % 1000 + "番の区域の編集";
+  } else if (lmNum % 100000 >= 50000) {
+    title = "区域番号" + (lmNum % 1000);
   } else {
     title = "区域の閲覧";
   }
@@ -144,7 +67,3 @@ function jump() {
   document.title = title;
   loader.classList.add('loaded');
 }
-</script>
-
-</body>
-</html>
