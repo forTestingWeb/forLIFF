@@ -1,13 +1,41 @@
-<style>
+/* ============================================================
+   全機種で文字サイズを完全統一するための最強設定
+   Android の「フォントサイズ」「表示サイズ」「自動拡大」を全て無効化
+   iPhone の自動拡大も無効化
+   Leaflet のポップアップ内部も完全統一
+============================================================ */
+
+html, body,
+.leaflet-popup-content,
+.leaflet-popup-content-wrapper,
+.popup-container,
+.popup-container * {
+    font-size: 16px !important;
+    line-height: 1.4 !important;
+
+    /* Android/iPhone の自動拡大を完全無効化 */
+    -webkit-text-size-adjust: none !important;
+    text-size-adjust: none !important;
+
+    /* Android Chrome の文字補正を無効化 */
+    -webkit-font-smoothing: antialiased !important;
+}
+
+/* ============================================================
+   あなたの既存 CSS（そのまま維持）
+============================================================ */
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
+
 html {
-  height: 100%; 
+  height: 100%;
   width: 100%;
 }
+
 body{
   position: absolute;
   transform-origin: top left;
-  -webkit-text-size-adjust: 100%; /* 文字サイズの自動調整を無効にする */
+  -webkit-text-size-adjust: 100%;
 }
 
 input[type="button"],
@@ -22,144 +50,163 @@ textarea {
   background-color: #eee;
   border: 1px solid #000;
 }
+
 input[type="button"]{
   font-size: 16px;
   padding: 0.2em 0.5em;
-  border-radius: 10%;/*角を丸く*/
+  border-radius: 10%;
 }
+
 textarea {
   height: 100px;
   width: 290px;
   resize: none;
   background-color:#fff;
 }
-#map {cursor:pointer;}
+
+#map { cursor:pointer; }
+
 #btn_container {
-	position: absolute;
-	left:48px; top:11px;
-	z-index: 1000;
+    position: absolute;
+    left:48px; top:11px;
+    z-index: 1000;
 }
+
 .leaflet-popup-content {
   font-size: 16px;
-  -webkit-text-size-adjust: 100%; /* 文字サイズの自動調整を無効にする */
+  -webkit-text-size-adjust: 100%;
 }
+
 .leaflet-popup-close-button {
   font-size: 18px;
 }
+
 .leaflet-popup-content-wrapper {
-	overflow-x: auto;
-	overflow-y: auto;
-	font-family:monospace;
+    overflow-x: auto;
+    overflow-y: auto;
+    font-family: monospace;
 }
+
 .leaflet-top{
     z-index:10000;
 }
+
 .leaflet-right{
     z-index:10000;
 }
+
 a { color:#0000FF; text-decoration:none; }
 
-.diviconK {	/* 文字ラベル */
+/* ============================================================
+   アイコン（既存のまま）
+============================================================ */
+
+.diviconK {
 display: inline-block;
-text-align: center;/*左右中央*/
+text-align: center;
 width: 40px;
 height: 40px;
-line-height: 40px;/*heightと同じ値に*/
-border-radius: 50%;/*角を丸く*/
+line-height: 40px;
+border-radius: 50%;
 color: #fff;
 background-color: #333;
 opacity: 0.6;
 font-size: 24px;
 }
-.diviconB {	/* 文字ラベル */
+
+.diviconB {
 display: inline-block;
-text-align: center;/*左右中央*/
+text-align: center;
 width: 40px;
 height: 40px;
-line-height: 40px;/*heightと同じ値に*/
-border-radius: 50%;/*角を丸く*/
+line-height: 40px;
+border-radius: 50%;
 color: #fff;
 background-color: #00f;
 opacity: 0.6;
 font-size: 24px;
 font-weight: bold;
 }
-.diviconP {	/* 文字ラベル */
+
+.diviconP {
 display: inline-block;
-text-align: center;/*左右中央*/
+text-align: center;
 width: 40px;
 height: 40px;
-line-height: 40px;/*heightと同じ値に*/
-border-radius: 50%;/*角を丸く*/
+line-height: 40px;
+border-radius: 50%;
 color: #fff;
 background-color: #80f;
 opacity: 0.6;
 font-size: 24px;
 font-weight: bold;
 }
-.diviconR {	/* 文字ラベル */
+
+.diviconR {
 display: inline-block;
-text-align: center;/*左右中央*/
+text-align: center;
 width: 45px;
 height: 40px;
-line-height: 52px;/*heightと同じ値に*/
+line-height: 52px;
 color: #fff;
 background-color: #f00;
 opacity: 0.6;
 font-size: 24px;
 font-weight: bold;
-clip-path: polygon(50% 0%, 0% 100%, 100% 100%); /* 三角形の形状 */
+clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
-.diviconO {	/* 文字ラベル */
+
+.diviconO {
 display: inline-block;
-text-align: center;/*左右中央*/
+text-align: center;
 width: 40px;
 height: 40px;
-line-height: 40px;/*heightと同じ値に*/
-border-radius: 50%;/*角を丸く*/
+line-height: 40px;
+border-radius: 50%;
 color: #fff;
 background-color: #f90;
 opacity: 0.6;
 font-size: 24px;
-//font-weight: bold;
 }
-.diviconG {	/* 文字ラベル */
+
+.diviconG {
 display: inline-block;
-text-align: center;/*左右中央*/
+text-align: center;
 width: 40px;
 height: 40px;
-line-height: 40px;/*heightと同じ値に*/
-border-radius: 50%;/*角を丸く*/
+line-height: 40px;
+border-radius: 50%;
 color: #fff;
 background-color: #0f0;
 opacity: 0.6;
 font-size: 24px;
 font-weight: bold;
 }
-.diviconOmit {	/* 文字ラベル */
+
+.diviconOmit {
 display: inline-block;
-text-align: center;/*左右中央*/
+text-align: center;
 width: 40px;
 height: 40px;
-line-height: 40px;/*heightと同じ値に*/
-border-radius: 50%;/*角を丸く*/
+line-height: 40px;
+border-radius: 50%;
 color: #f00;
 background-color: #333;
 opacity: 0.6;
 font-size: 24px;
 font-weight: bold;
 }
-.diviconNopark {	/* 文字ラベル */
+
+.diviconNopark {
 display: inline-block;
-text-align: center;/*左右中央*/
+text-align: center;
 width: 12px;
 height: 12px;
-line-height: 12px;/*heightと同じ値に*/
-border-radius: 50%;/*角を丸く*/
+line-height: 12px;
+border-radius: 50%;
 color: #ff0;
 background-color: #000;
 opacity: 1.0;
 font-size: 12px;
 font-weight: bold;
 }
-</style>
