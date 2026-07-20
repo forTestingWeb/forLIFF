@@ -1,69 +1,22 @@
 /* ============================================================
-   全機種で文字サイズを完全固定する最終版
-   Android の「フォントサイズ」「表示サイズ」「自動拡大」を完全無効化
-   iPhone の自動拡大も無効化
-   Leaflet のポップアップ内部も完全統一
+   全ての文字サイズがシステム設定の影響を受けないようにする完全版CSS
+   （viewmap.css にそのままコピペして使う想定）
 ============================================================ */
 
-html, body, iframe,
-.leaflet-container,
-.leaflet-popup,
-.leaflet-popup-content,
-.leaflet-popup-content-wrapper,
-.leaflet-popup-close-button,
-.popup-container,
-.popup-container *,
-button, input, select, textarea {
-    font-size: 16px !important;
-    line-height: 1.4 !important;
-
-    /* Android/iPhone の自動拡大を完全無効化 */
-    -webkit-text-size-adjust: none !important;
-    text-size-adjust: none !important;
-
-    /* Android Chrome の文字補正を無効化 */
-    -webkit-font-smoothing: antialiased !important;
-}
-
-/* ポップアップ内のボタンも統一 */
-.popup-container button {
-    font-size: 15px !important;
-    padding: 6px 10px !important;
-}
-
-/* Leaflet のポップアップ枠も固定 */
-.leaflet-popup-content-wrapper {
-    font-family: monospace !important;
-    font-size: 16px !important;
-    overflow-x: auto !important;
-    overflow-y: auto !important;
-}
-
-/* Leaflet の地図ラベルも固定 */
-.diviconK, .diviconB, .diviconP, .diviconR, .diviconO, .diviconG, .diviconOmit, .diviconNopark {
-    font-size: 24px !important;
-    line-height: 40px !important;
-    -webkit-text-size-adjust: none !important;
-    text-size-adjust: none !important;
-}
-
-/* ============================================================
-   あなたの既存 CSS（そのまま維持）
-============================================================ */
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-html {
+/* ベース：ページ全体の文字を固定 */
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   height: 100%;
   width: 100%;
+  font-size: 16px !important;
+  line-height: 1.4 !important;
+  -webkit-text-size-adjust: none !important;
+  text-size-adjust: none !important;
 }
 
-body{
-  position: absolute;
-  transform-origin: top left;
-  -webkit-text-size-adjust: 100%;
-}
-
+/* 入力系・ボタン類の文字も固定 */
 input[type="button"],
 button,
 select,
@@ -71,14 +24,16 @@ textarea {
   -webkit-appearance: none;
   border-radius: 0;
   display: inline-block;
-  font-size: 14px;
+  font-size: 16px !important;
+  line-height: 1.4 !important;
   color: #000;
   background-color: #eee;
   border: 1px solid #000;
+  -webkit-text-size-adjust: none !important;
+  text-size-adjust: none !important;
 }
 
-input[type="button"]{
-  font-size: 16px;
+input[type="button"] {
   padding: 0.2em 0.5em;
   border-radius: 10%;
 }
@@ -87,137 +42,108 @@ textarea {
   height: 100px;
   width: 290px;
   resize: none;
-  background-color:#fff;
+  background-color: #fff;
 }
 
-#map { cursor:pointer; }
-
-#btn_container {
-    position: absolute;
-    left:48px; top:11px;
-    z-index: 1000;
+/* Leaflet ポップアップ内の文字を完全固定 */
+.leaflet-popup-content,
+.leaflet-popup-content-wrapper,
+.leaflet-popup-close-button,
+.popup-container,
+.popup-container * {
+  font-size: 16px !important;
+  line-height: 1.4 !important;
+  -webkit-text-size-adjust: none !important;
+  text-size-adjust: none !important;
 }
 
-.leaflet-top{
-    z-index:10000;
+/* ポップアップ内ボタンの見た目統一 */
+.popup-container button {
+  font-size: 16px !important;
+  padding: 6px 10px !important;
 }
 
-.leaflet-right{
-    z-index:10000;
+/* ポップアップ枠のスクロールとフォント */
+.leaflet-popup-content-wrapper {
+  overflow-x: auto;
+  overflow-y: auto;
+  font-family: monospace;
 }
 
-a { color:#0000FF; text-decoration:none; }
-
-/* ============================================================
-   アイコン（既存のまま）
-============================================================ */
-
-.diviconK {
-display: inline-block;
-text-align: center;
-width: 40px;
-height: 40px;
-line-height: 40px;
-border-radius: 50%;
-color: #fff;
-background-color: #333;
-opacity: 0.6;
-font-size: 24px;
+/* 地図ラベル（アイコン）の文字も固定 */
+.diviconK,
+.diviconB,
+.diviconP,
+.diviconR,
+.diviconO,
+.diviconG,
+.diviconOmit {
+  display: inline-block;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  color: #fff;
+  opacity: 0.6;
+  font-size: 24px !important;
+  font-weight: bold;
+  -webkit-text-size-adjust: none !important;
+  text-size-adjust: none !important;
 }
 
-.diviconB {
-display: inline-block;
-text-align: center;
-width: 40px;
-height: 40px;
-line-height: 40px;
-border-radius: 50%;
-color: #fff;
-background-color: #00f;
-opacity: 0.6;
-font-size: 24px;
-font-weight: bold;
-}
-
-.diviconP {
-display: inline-block;
-text-align: center;
-width: 40px;
-height: 40px;
-line-height: 40px;
-border-radius: 50%;
-color: #fff;
-background-color: #80f;
-opacity: 0.6;
-font-size: 24px;
-font-weight: bold;
-}
+.diviconK { background-color: #333; font-weight: normal; }
+.diviconB { background-color: #00f; }
+.diviconP { background-color: #80f; }
+.diviconO { background-color: #f90; font-weight: normal; }
+.diviconG { background-color: #0f0; }
+.diviconOmit { background-color: #333; color: #f00; }
 
 .diviconR {
-display: inline-block;
-text-align: center;
-width: 45px;
-height: 40px;
-line-height: 52px;
-color: #fff;
-background-color: #f00;
-opacity: 0.6;
-font-size: 24px;
-font-weight: bold;
-clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-}
-
-.diviconO {
-display: inline-block;
-text-align: center;
-width: 40px;
-height: 40px;
-line-height: 40px;
-border-radius: 50%;
-color: #fff;
-background-color: #f90;
-opacity: 0.6;
-font-size: 24px;
-}
-
-.diviconG {
-display: inline-block;
-text-align: center;
-width: 40px;
-height: 40px;
-line-height: 40px;
-border-radius: 50%;
-color: #fff;
-background-color: #0f0;
-opacity: 0.6;
-font-size: 24px;
-font-weight: bold;
-}
-
-.diviconOmit {
-display: inline-block;
-text-align: center;
-width: 40px;
-height: 40px;
-line-height: 40px;
-border-radius: 50%;
-color: #f00;
-background-color: #333;
-opacity: 0.6;
-font-size: 24px;
-font-weight: bold;
+  width: 45px;
+  height: 40px;
+  line-height: 52px;
+  background-color: #f00;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
 
 .diviconNopark {
-display: inline-block;
-text-align: center;
-width: 12px;
-height: 12px;
-line-height: 12px;
-border-radius: 50%;
-color: #ff0;
-background-color: #000;
-opacity: 1.0;
-font-size: 12px;
-font-weight: bold;
+  display: inline-block;
+  text-align: center;
+  width: 12px;
+  height: 12px;
+  line-height: 12px;
+  border-radius: 50%;
+  color: #ff0;
+  background-color: #000;
+  opacity: 1.0;
+  font-size: 12px !important;
+  font-weight: bold;
+  -webkit-text-size-adjust: none !important;
+  text-size-adjust: none !important;
+}
+
+/* その他レイアウト系（既存を維持） */
+body {
+  position: absolute;
+  transform-origin: top left;
+}
+
+#map { cursor: pointer; }
+
+#btn_container {
+  position: absolute;
+  left: 48px;
+  top: 11px;
+  z-index: 1000;
+}
+
+.leaflet-top,
+.leaflet-right {
+  z-index: 10000;
+}
+
+a {
+  color: #0000FF;
+  text-decoration: none;
 }
