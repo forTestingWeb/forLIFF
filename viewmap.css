@@ -1,19 +1,10 @@
 /* ============================================================
    ★ 全機種で文字サイズを完全固定する最終版
-   Android の「フォントサイズ」「表示サイズ」「自動拡大」を完全無効化
-   iPhone の自動拡大も無効化
-   Leaflet のポップアップ内部も完全統一
+   Android／iPhone／PC のシステム設定を完全無視
+   Leaflet ポップアップ・ボタン・地図ラベルすべて統一
 ============================================================ */
 
-html, body, iframe,
-.leaflet-container,
-.leaflet-popup,
-.leaflet-popup-content,
-.leaflet-popup-content-wrapper,
-.leaflet-popup-close-button,
-.popup-container,
-.popup-container *,
-button, input, select, textarea {
+html, body, iframe, * {
   font-size: 16px !important;
   line-height: 1.4 !important;
   -webkit-text-size-adjust: none !important;
@@ -22,38 +13,40 @@ button, input, select, textarea {
   font-family: sans-serif !important;
 }
 
-/* ポップアップ内のボタンも統一 */
+/* Leaflet ポップアップ内部 */
+.leaflet-popup,
+.leaflet-popup-content,
+.leaflet-popup-content-wrapper,
+.leaflet-popup-close-button,
+.popup-container,
+.popup-container * {
+  font-size: 16px !important;
+  line-height: 1.4 !important;
+}
+
+/* ボタン */
 .popup-container button {
   font-size: 15px !important;
   padding: 6px 10px !important;
 }
 
-/* Leaflet のポップアップ枠も固定 */
+/* ポップアップ枠 */
 .leaflet-popup-content-wrapper {
   font-family: monospace !important;
-  font-size: 16px !important;
   overflow-x: auto !important;
   overflow-y: auto !important;
 }
 
-/* Leaflet の地図ラベルも固定 */
+/* 地図ラベル */
 .diviconK, .diviconB, .diviconP, .diviconR, .diviconO, .diviconG, .diviconOmit, .diviconNopark {
   font-size: 24px !important;
   line-height: 40px !important;
-  -webkit-text-size-adjust: none !important;
-  text-size-adjust: none !important;
 }
 
-/* ============================================================
-   既存レイアウト維持
-============================================================ */
-
+/* 既存レイアウト維持 */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html {
-  height: 100%;
-  width: 100%;
-}
+html { height: 100%; width: 100%; }
 
 body {
   position: absolute;
@@ -94,125 +87,15 @@ textarea {
 }
 
 .leaflet-top,
-.leaflet-right {
-  z-index: 10000;
-}
+.leaflet-right { z-index: 10000; }
 
-a {
-  color: #0000FF;
-  text-decoration: none;
-}
+a { color: #0000FF; text-decoration: none; }
 
-/* ============================================================
-   アイコン（既存のまま）
-============================================================ */
-
-.diviconK {
-  display: inline-block;
-  text-align: center;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  border-radius: 50%;
-  color: #fff;
-  background-color: #333;
-  opacity: 0.6;
-  font-size: 24px;
-}
-
-.diviconB {
-  display: inline-block;
-  text-align: center;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  border-radius: 50%;
-  color: #fff;
-  background-color: #00f;
-  opacity: 0.6;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.diviconP {
-  display: inline-block;
-  text-align: center;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  border-radius: 50%;
-  color: #fff;
-  background-color: #80f;
-  opacity: 0.6;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.diviconR {
-  display: inline-block;
-  text-align: center;
-  width: 45px;
-  height: 40px;
-  line-height: 52px;
-  color: #fff;
-  background-color: #f00;
-  opacity: 0.6;
-  font-size: 24px;
-  font-weight: bold;
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-}
-
-.diviconO {
-  display: inline-block;
-  text-align: center;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  border-radius: 50%;
-  color: #fff;
-  background-color: #f90;
-  opacity: 0.6;
-  font-size: 24px;
-}
-
-.diviconG {
-  display: inline-block;
-  text-align: center;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  border-radius: 50%;
-  color: #fff;
-  background-color: #0f0;
-  opacity: 0.6;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.diviconOmit {
-  display: inline-block;
-  text-align: center;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  border-radius: 50%;
-  color: #f00;
-  background-color: #333;
-  opacity: 0.6;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.diviconNopark {
-  display: inline-block;
-  text-align: center;
-  width: 12px;
-  height: 12px;
-  line-height: 12px;
-  border-radius: 50%;
-  color: #ff0;
-  background-color: #000;
-  opacity: 1.0;
-  font-size: 12px;
-  font-weight: bold;
-}
+/* アイコン */
+.diviconK { background-color: #333; color: #fff; opacity: 0.6; border-radius: 50%; text-align: center; width: 40px; height: 40px; line-height: 40px; }
+.diviconB { background-color: #00f; color: #fff; opacity: 0.6; border-radius: 50%; text-align: center; width: 40px; height: 40px; line-height: 40px; font-weight: bold; }
+.diviconP { background-color: #80f; color: #fff; opacity: 0.6; border-radius: 50%; text-align: center; width: 40px; height: 40px; line-height: 40px; font-weight: bold; }
+.diviconR { background-color: #f00; color: #fff; opacity: 0.6; text-align: center; width: 45px; height: 40px; line-height: 52px; font-weight: bold; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); }
+.diviconO { background-color: #f90; color: #fff; opacity: 0.6; border-radius: 50%; text-align: center; width: 40px; height: 40px; line-height: 40px; }
+.diviconG { background-color: #0f0; color: #fff; opacity: 0.6; border-radius: 50%; text-align: center; width: 40px; height: 40px; line-height: 40px; font-weight: bold; }
+.diviconOmit { background-color: #333; color: #f00; opacity: 0.6; border-radius: 50%; text-align: center; width: 40px; height: 40px; line-height: 40px; font-weight
