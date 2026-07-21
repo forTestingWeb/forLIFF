@@ -6,7 +6,7 @@ html, body {
 body {
   position:fixed;
   transform-origin: top left;
-  -webkit-text-size-adjust: 100%; /* テキストサイズの自動調整を無効にする */
+  -webkit-text-size-adjust: none !important; /* テキストサイズの自動調整を無効にする */
   overflow-y:auto;
   -webkit-overflow-scrolling:touch;
   background: #eee;
@@ -50,7 +50,7 @@ button {
     }
 }
 #loader {
-    font-size: 10vw;
+    font-size: 10vw !important;
     display:none; 
     pointer-events: none;
     width: 100%;
