@@ -50,7 +50,7 @@ button {
     }
 }
 #loader {
-    font-size: 10vw;
+    font-size: 32px !important;
     display:none; 
     pointer-events: none;
     width: 100%;
