@@ -46,7 +46,7 @@ let flag = params.get('flag') ? Number(params.get('flag')) : 0;
 
 const ua = navigator.userAgent;
 let iOSflag = params.get('iOSflag') ? 1 : 0;
-let outerflag = params.get('outerflag') ? 1 : 0;
+//let outerflag = params.get('outerflag') ? 1 : 0;
 
 init();
 
@@ -71,14 +71,14 @@ function init() {
         }
         if (liff.isLoggedIn()) loader.style.display = "block";
         else liff.login();
-
+/*
         if (outerflag) {
           const location = document.location";
           liff.openWindow({ url: location, external: true });
           document.title = "このウィンドウは閉じてください。";
           return;
         }
-
+*/
         userId = liff.getDecodedIDToken().sub;
         jump();
       });
