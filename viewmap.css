@@ -3,12 +3,12 @@
 html {
   height: 100%; 
   width: 100%;
-  -webkit-text-size-adjust: 100%; /* 文字サイズの自動調整を無効にする */
+  -webkit-text-size-adjust: none; /* 文字サイズの自動調整を無効にする */
 }
 body{
   position: absolute;
   transform-origin: top left;
-  -webkit-text-size-adjust: 100%; /* 文字サイズの自動調整を無効にする */
+  -webkit-text-size-adjust: none; /* 文字サイズの自動調整を無効にする */
 }
 
 input[type="button"],
