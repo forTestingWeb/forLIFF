@@ -64,12 +64,14 @@ function init() {
         else liff.login();
 
         userId = liff.getDecodedIDToken().sub;
-if (confirm("文字が大きすぎる場合は、「OK」から外部ブラウザで開いてください。")) {
+        /*
+        if (!confirm("起動を続けます。文字が大きすぎる場合は、「キャンセル」して外部ブラウザで開いてください。")) {
           const location = document.location + "&iOSflag=1";
           liff.openWindow({ url: location, external: true });
           document.title = "このウィンドウは閉じてください。";
           return;
-}
+        }
+        */
         jump();
       });
 
