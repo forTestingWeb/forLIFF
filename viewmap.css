@@ -1,14 +1,16 @@
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+  margin: 0; padding: 0; box-sizing: border-box;
+  -webkit-text-size-adjust: none !important;
+  text-size-adjust: none !important;
+}
 html {
   height: 100%; 
   width: 100%;
-  -webkit-text-size-adjust: none; /* 文字サイズの自動調整を無効にする */
 }
 body{
   position: absolute;
   transform-origin: top left;
-  -webkit-text-size-adjust: none; /* 文字サイズの自動調整を無効にする */
 }
 
 input[type="button"],
@@ -42,7 +44,6 @@ textarea {
 }
 .leaflet-popup-content {
   font-size: 16px;
-  -webkit-text-size-adjust: 100%; /* 文字サイズの自動調整を無効にする */
 }
 .leaflet-popup-close-button {
   font-size: 18px;
