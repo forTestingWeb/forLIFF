@@ -46,6 +46,7 @@ let flag = params.get('flag') ? Number(params.get('flag')) : 0;
 
 const ua = navigator.userAgent;
 let iOSflag = params.get('iOSflag') ? 1 : 0;
+let outerflag = params.get('outerflag') ? 1 : 0;
 
 init();
 
@@ -54,6 +55,21 @@ function init() {
 
     if (liff.isInClient()) {
       liff.ready.then(() => {
+        if (outerflag) {
+          const location = document.location;
+          liff.openWindow({ url: location, external: true });
+          document.title = "このウィンドウは閉じてください。";
+          return;
+        }
+
+        /*
+        if (!confirm("起動を続けます。文字が大きすぎる場合は、「キャンセル」して外部ブラウザで開いてください。")) {
+          const location = document.location + "&iOSflag=1";
+          liff.openWindow({ url: location, external: true });
+          document.title = "このウィンドウは閉じてください。";
+          return;
+        }
+        */
         if (ua.indexOf('iPad') > 0 && !iOSflag) {
           const location = document.location + "&iOSflag=1";
           liff.openWindow({ url: location, external: false });
@@ -64,14 +80,6 @@ function init() {
         else liff.login();
 
         userId = liff.getDecodedIDToken().sub;
-        /*
-        if (!confirm("起動を続けます。文字が大きすぎる場合は、「キャンセル」して外部ブラウザで開いてください。")) {
-          const location = document.location + "&iOSflag=1";
-          liff.openWindow({ url: location, external: true });
-          document.title = "このウィンドウは閉じてください。";
-          return;
-        }
-        */
         jump();
       });
 
