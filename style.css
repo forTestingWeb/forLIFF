@@ -39,6 +39,12 @@ button {
     border:none;
     display:block;
 }
+.fixed-text {
+  font-size: 14px;
+  -webkit-text-size-adjust: none !important;
+  transform: scale(1);
+  line-height: 1.4;
+}
 @keyframes fadeOut {
     from {
         opacity: 1;
