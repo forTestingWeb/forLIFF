@@ -7,18 +7,6 @@
 <title>読み込み中…</title>
 <base target="_top">
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-<style>
-  html {
-  -webkit-text-size-adjust: none;
-  height: 100%;
-}
-    /* px固定でフォント拡大の影響をほぼゼロにする */
-  body {
-    font-size: 14px;
-    touch-action: manipulation; /* LIFF特有の拡大抑制 */
-    height: 100%;
-  }
-</style>
 <script>
 // ピンチインピンチアウト禁止
 document.documentElement.addEventListener('touchstart', function (e) {
