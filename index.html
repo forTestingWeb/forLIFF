@@ -74,7 +74,7 @@ function init() {
 
         userId = liff.getDecodedIDToken().sub;
         if (ext=="true") {
-          const location = document.location";
+          const location = document.location + "&ext=true";
           liff.openWindow({ url: location, external: true });
           document.title = "このウィンドウは閉じてください。";
           return;
