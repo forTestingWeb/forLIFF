@@ -46,7 +46,7 @@ let flag = params.get('flag') ? Number(params.get('flag')) : 0;
 
 const ua = navigator.userAgent;
 let iOSflag = params.get('iOSflag') ? 1 : 0;
-let ext = params.get('ext') ? 1 : 0;
+let ext = params.get('ext');
 
 init();
 
@@ -73,7 +73,7 @@ function init() {
         else liff.login();
 
         userId = liff.getDecodedIDToken().sub;
-        if (ext) {
+        if (ext=="true") {
           const location = document.location";
           liff.openWindow({ url: location, external: true });
           document.title = "このウィンドウは閉じてください。";
