@@ -56,7 +56,7 @@ function init() {
     if (liff.isInClient()) {
       liff.ready.then(() => {
         if (outerflag) {
-          const location = document.location;
+          const location = document.location + "&iOSflag=1";
           liff.openWindow({ url: location, external: true });
           document.title = "このウィンドウは閉じてください。";
           return;
