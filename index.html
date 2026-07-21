@@ -60,13 +60,12 @@ function init() {
           document.title = "このウィンドウは閉じてください。";
           return;
         }
-        const location = document.location;//20260721追加
-        liff.openWindow({ url: location, external: false });//20260721追加
-
         if (liff.isLoggedIn()) loader.style.display = "block";
         else liff.login();
 
         userId = liff.getDecodedIDToken().sub;
+        const location = document.location;//20260721追加
+        liff.openWindow({ url: location, external: false });//20260721追加
         jump();
       });
 
