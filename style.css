@@ -6,7 +6,7 @@ html, body {
 body {
   position:fixed;
   transform-origin: top left;
-  -webkit-text-size-adjust: none !important; /* テキストサイズの自動調整を無効にする */
+  -webkit-text-size-adjust: none; /* テキストサイズの自動調整を無効にする */
   overflow-y:auto;
   -webkit-overflow-scrolling:touch;
   background: #eee;
@@ -37,11 +37,6 @@ button {
     height:100vh;
     border:none;
     display:block;
-}
-.fixed-text {
-  font-size: 14px;
-  -webkit-text-size-adjust: none !important;
-  line-height: 1.4;
 }
 @keyframes fadeOut {
     from {
