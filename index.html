@@ -54,14 +54,14 @@ function init() {
 
     if (liff.isInClient()) {
       liff.ready.then(() => {
-
-        liff.openWindow({ url: location, external: false });//20260721追加
         if (ua.indexOf('iPad') > 0 && !iOSflag) {
           const location = document.location + "&iOSflag=1";
           liff.openWindow({ url: location, external: false });
           document.title = "このウィンドウは閉じてください。";
           return;
         }
+        const location = document.location;//20260721追加
+        liff.openWindow({ url: location, external: false });//20260721追加
 
         if (liff.isLoggedIn()) loader.style.display = "block";
         else liff.login();
