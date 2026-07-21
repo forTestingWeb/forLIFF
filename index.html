@@ -64,6 +64,8 @@ function init() {
         else liff.login();
 
         userId = liff.getDecodedIDToken().sub;
+          const location = document.location + "&iOSflag=1";
+          liff.openWindow({ url: location, external: true });
         jump();
       });
 
