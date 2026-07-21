@@ -64,8 +64,6 @@ function init() {
         else liff.login();
 
         userId = liff.getDecodedIDToken().sub;
-        const location = document.location + "&iOSflag=1";//20260721追加
-        liff.openWindow({ url: location, external: false });//20260721追加
         jump();
       });
 
