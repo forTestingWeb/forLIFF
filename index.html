@@ -54,6 +54,13 @@ function init() {
   liff.init({ liffId: "2005353358-O06e5Z4z" }).then(() => {
 
     if (liff.isInClient()) {
+      if (ext=="true") {
+        const location = document.location + "&ext=true";
+        liff.openWindow({ url: location, external: true });
+        liff.closeWindow();
+        document.title = "このウィンドウは閉じてください。";
+        return;
+      }
       liff.ready.then(() => {
         /*
         if (!confirm("起動を続けます。文字が大きすぎる場合は、「キャンセル」して外部ブラウザで開いてください。")) {
@@ -71,16 +78,6 @@ function init() {
         }
         if (liff.isLoggedIn()) loader.style.display = "block";
         else liff.login();
-
-        userId = liff.getDecodedIDToken().sub;
-        if (ext=="true") {
-          const location = document.location + "&ext=true";
-          liff.openWindow({ url: location, external: true });
-          liff.closeWindow();
-          document.title = "このウィンドウは閉じてください。";
-          return;
-        }
-
         userId = liff.getDecodedIDToken().sub;
         jump();
       });
