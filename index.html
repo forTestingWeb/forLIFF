@@ -10,18 +10,10 @@
 <script>
 // 3時間経過で閉じる。できなければ非表示。
 const limitMs = 10*1000;
-const openedAt = Date.now();
 setTimeout(() => {
+  cpnform("24時間が経過したため、地図画面を消去しました。引き続き使用する場合は開きなおしてください。"); // 全消し
   window.close();   // 自動クローズ
 }, limitMs);
-setInterval(hideContent, 6000);
-
-//3時間経過で
-function hideContent() {
-  if (Date.now() - openedAt >= limitMs) {
-    document.body.innerHTML = "24時間が経過したため、地図画面を消去しました。引き続き使用する場合は開きなおしてください。"; // 全消し
-  }
-}
 
 // ピンチインピンチアウト禁止
 document.documentElement.addEventListener('touchstart', function (e) {
