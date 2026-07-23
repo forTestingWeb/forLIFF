@@ -66,7 +66,7 @@ function init() {
         if (ua.indexOf('iPad') > 0 && !iOSflag) {
           const location = document.location + "&iOSflag=1";
           liff.openWindow({ url: location, external: false });
-          liff.closeWindow();
+          // liff.closeWindow();これを実行するとLIFFでなくLINEが閉じてしまうため、含めない。
           document.title = "このウィンドウは閉じてください。";
           return;
         }
@@ -122,21 +122,13 @@ function jump() {
     /* ------------------------------
        GAS 側からの LOADED 通知を受け取る
        ------------------------------ */
-    /*
     window.addEventListener("message", (e) => {
-      if (e.data === "LOADED") {
+      if (e.data.type === "TITLE") {
         loaded = true;
         loader.style.display = "none";
+        document.title = e.data.value;
       }
     });
-    */
-window.addEventListener("message", (e) => {
-  if (e.data.type === "TITLE") {
-    loaded = true;
-    loader.style.display = "none";
-    document.title = e.data.value;
-  }
-});
 
     /* ------------------------------
        タイムアウト（10秒）
