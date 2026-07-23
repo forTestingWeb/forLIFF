@@ -11,9 +11,10 @@
 // 3時間経過で閉じる。できなければ非表示。
 const limitMs = 10*1000;
 setTimeout(() => {
-   document.body.innerHTML = "";
-   alert("24時間が経過したため、画面を消去します。引き続き使用する場合は開きなおしてください。"); // 全消し
+  document.body.innerHTML = "";
+  alert("24時間が経過したため、画面を消去します。引き続き使用する場合は開きなおしてください。"); // 全消し
   window.close();   // 自動クローズ
+  liff.closeWindow();
 }, limitMs);
 
 // ピンチインピンチアウト禁止
