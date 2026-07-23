@@ -8,6 +8,12 @@
 <base target="_top">
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 <script>
+// 3時間経過で閉じる
+const limitMs = 3;
+
+ setTimeout(() => {
+  window.close();   // 自動クローズ
+}, limitMs);
 // ピンチインピンチアウト禁止
 document.documentElement.addEventListener('touchstart', function (e) {
   if (e.touches.length >= 2) e.preventDefault();
