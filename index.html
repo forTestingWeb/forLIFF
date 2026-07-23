@@ -54,6 +54,7 @@ function init() {
   liff.init({ liffId: "2005353358-O06e5Z4z" }).then(() => {
 
     if (liff.isInClient()) {
+        //外部ブラウザで開くオプション
       if (ext=="true") {
         const location = document.location + "&ext=true";
         liff.openWindow({ url: location, external: true });
@@ -62,17 +63,10 @@ function init() {
         return;
       }
       liff.ready.then(() => {
-        /*
-        if (!confirm("起動を続けます。文字が大きすぎる場合は、「キャンセル」して外部ブラウザで開いてください。")) {
-          const location = document.location + "&iOSflag=1";
-          liff.openWindow({ url: location, external: true });
-          document.title = "このウィンドウは閉じてください。";
-          return;
-        }
-        */
         if (ua.indexOf('iPad') > 0 && !iOSflag) {
           const location = document.location + "&iOSflag=1";
           liff.openWindow({ url: location, external: false });
+          liff.closeWindow();
           document.title = "このウィンドウは閉じてください。";
           return;
         }
